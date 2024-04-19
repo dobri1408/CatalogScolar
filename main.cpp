@@ -12,7 +12,7 @@ private:
 
 public:
     Parinte(){}
-    Parinte(const string nume, const string email) : nume(nume), email(email) {}
+    Parinte(const string &nume, const string &email) : nume(nume), email(email) {}
 
     // Constructor de copiere
     Parinte(const Parinte& other) : nume(other.nume), email(other.email) {}
