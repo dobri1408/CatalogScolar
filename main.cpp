@@ -96,19 +96,18 @@ private:
     string prenume;
     int id;
     vector<Nota> note;  // Array dinamic de note
-    size_t numarNote;
     Parinte p;
 
 public:
-    Student(const string &nume, const string &prenume, const Parinte &p, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()), numarNote(0),p(p) {}
+    Student(const string &nume, const string &prenume, const Parinte &p, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()),p(p) {}
 
     // Constructor pentru initializarea notelor
-    Student(const string &nume, const string &prenume, const int &id, const vector<Nota> &noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
+    Student(const string &nume, const string &prenume, const int &id, const vector<Nota> &noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), note(noteArray) {
        
     }
 
     // Constructor de copiere
-    Student(const Student& other) : nume(other.nume), prenume(other.prenume), id(other.id), numarNote(other.numarNote),note(other.note) {
+    Student(const Student& other) : nume(other.nume), prenume(other.prenume), id(other.id),note(other.note) {
         
     }
 
@@ -118,8 +117,6 @@ public:
             nume = other.nume;
             prenume = other.prenume;
             id = other.id;
-
-            numarNote = other.numarNote;
             note = other.note;
         }
         return *this;
