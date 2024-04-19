@@ -1,57 +1,204 @@
 #include <iostream>
-#include <array>
+#include <vector>
+#include <string>
+#include <algorithm>
 
-#include <Helper.h>
+using namespace std;
+
+class Materie {
+private:
+    string numeMaterie;
+    string profesor;
+
+public:
+	Materie(){}
+    Materie(string numeMaterie, string profesor) : numeMaterie(numeMaterie), profesor(profesor) {}
+    Materie(const Materie& other) : numeMaterie(other.numeMaterie), profesor(other.profesor) {}
+    Materie& operator=(const Materie& other) {
+        if (this != &other) {
+            numeMaterie = other.numeMaterie;
+            profesor = other.profesor;
+        }
+        return *this;
+    }
+    ~Materie() {}
+     
+    const string& getMaterie() const { return numeMaterie; }
+
+    friend ostream& operator<<(ostream& os, const Materie& m) {
+        os << "Materie: " << m.numeMaterie << ", Profesor: " << m.profesor;
+        return os;
+    }
+};
+
+class Nota {
+private:
+    Materie materie;
+    int valoare;
+
+public:
+	Nota(){}
+    Nota(Materie materie, int valoare) : materie(materie), valoare(valoare) {}
+    Nota(const Nota& other) : materie(other.materie), valoare(other.valoare) {}
+    Nota& operator=(const Nota& other) {
+        if (this != &other) {
+            materie = other.materie;
+            valoare = other.valoare;
+        }
+        return *this;
+    }
+    ~Nota() {}
+    int getValoare() const { return valoare; }
+    
+  
+    friend ostream& operator<<(ostream& os, const Nota& n) {
+        os << n.materie << ", Nota: " << n.valoare;
+        return os;
+    }
+};
+
+// Clasa Student
+class Student {
+private:
+    string nume;
+    string prenume;
+    int id;
+    vector<Nota> note;  // Array dinamic de note
+    size_t numarNote;
+
+public:
+    Student(string nume, string prenume, int id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()), numarNote(0) {}
+
+    // Constructor pentru initializarea notelor
+    Student(string nume, string prenume, int id, vector<Nota> noteArray, size_t numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
+       
+    }
+
+    // Constructor de copiere
+    Student(const Student& other) : nume(other.nume), prenume(other.prenume), id(other.id), numarNote(other.numarNote),note(other.note) {
+        
+    }
+
+    // Operator de atribuire
+    Student& operator=(const Student& other) {
+        if (this != &other) {
+            nume = other.nume;
+            prenume = other.prenume;
+            id = other.id;
+
+            numarNote = other.numarNote;
+            note = other.note;
+        }
+        return *this;
+    }
+
+    // Destructor
+    ~Student() {
+       note.resize(0);
+        cout << "Distrug Student: " << nume << " " << prenume << endl;
+    }
+     void adaugaNota(const Nota& nota) {
+        note.push_back(nota);
+    }
+
+    const string getNumeComplet() const {
+        return (string)nume + (string)" " + (string)prenume;
+    }
+
+	  double calculeazaMedia() const {
+        if (note.empty()) return 0.0;
+        double suma = 0.0;
+        for (const auto& nota : note) {
+            suma += nota.getValoare();
+        }
+        return suma / note.size();
+    }
+
+    bool esteCorigent() const {
+        return calculeazaMedia() < 5;
+        }
+ 
+    
+
+    int notaMaxima() const {
+        int max = 0;
+        for (const auto& nota : note) {
+            if (nota.getValoare() > max) {
+                max = nota.getValoare();
+            }
+        }
+        return max;
+    }
+
+    friend ostream& operator<<(ostream& os, const Student& s) {
+        os << "ID: " << s.id << ", Nume: " << s.nume << ", Prenume: " << s.prenume;
+        if (s.note.size()>0) {
+            os << ", Note: ";
+            for (size_t i = 0; i < s.note.size(); i++) {
+                os << s.note[i] << " ";
+            }
+        }
+        return os;
+    }
+};
+
+// Clasa Materie
+
+// Clasa Nota
+
+// Clasa Catalog
+class Catalog {
+private:
+    vector<Student> studenti;
+
+public:
+    void adaugaStudent(const Student& student) {
+        studenti.push_back(student);
+    }
+    void afiseazaTopulClasei() {
+        sort(studenti.begin(), studenti.end(), [](const Student& s1, const Student& s2) {
+            return s1.calculeazaMedia() > s2.calculeazaMedia();
+        });
+
+        for (auto& student : studenti) {
+            cout << student.getNumeComplet()<< " - Media: " << student.calculeazaMedia() << endl;
+        }
+    }
+    void afiseazaCatalog() {
+        for (auto& student : studenti) {
+            cout << student << endl;
+        }
+       
+    }
+    void afiseazaCorigentii() {
+        cout << "Studentii corigenti sunt:" << endl;
+        for (const auto& student : studenti) {
+            if (student.esteCorigent()) {
+                cout << student.getNumeComplet() << endl;
+            }
+        }
+    }
+};
 
 int main() {
-    std::cout << "Hello, world!\n";
-    std::array<int, 100> v{};
-    int nr;
-    std::cout << "Introduceți nr: ";
-    /////////////////////////////////////////////////////////////////////////
-    /// Observație: dacă aveți nevoie să citiți date de intrare de la tastatură,
-    /// dați exemple de date de intrare folosind fișierul tastatura.txt
-    /// Trebuie să aveți în fișierul tastatura.txt suficiente date de intrare
-    /// (în formatul impus de voi) astfel încât execuția programului să se încheie.
-    /// De asemenea, trebuie să adăugați în acest fișier date de intrare
-    /// pentru cât mai multe ramuri de execuție.
-    /// Dorim să facem acest lucru pentru a automatiza testarea codului, fără să
-    /// mai pierdem timp de fiecare dată să introducem de la zero aceleași date de intrare.
-    ///
-    /// Pe GitHub Actions (bife), fișierul tastatura.txt este folosit
-    /// pentru a simula date introduse de la tastatură.
-    /// Bifele verifică dacă programul are erori de compilare, erori de memorie și memory leaks.
-    ///
-    /// Dacă nu puneți în tastatura.txt suficiente date de intrare, îmi rezerv dreptul să vă
-    /// testez codul cu ce date de intrare am chef și să nu pun notă dacă găsesc vreun bug.
-    /// Impun această cerință ca să învățați să faceți un demo și să arătați părțile din
-    /// program care merg (și să le evitați pe cele care nu merg).
-    ///
-    /////////////////////////////////////////////////////////////////////////
-    std::cin >> nr;
-    /////////////////////////////////////////////////////////////////////////
-    for(int i = 0; i < nr; ++i) {
-        std::cout << "v[" << i << "] = ";
-        std::cin >> v[i];
-    }
-    std::cout << "\n\n";
-    std::cout << "Am citit de la tastatură " << nr << " elemente:\n";
-    for(int i = 0; i < nr; ++i) {
-        std::cout << "- " << v[i] << "\n";
-    }
-    ///////////////////////////////////////////////////////////////////////////
-    /// Pentru date citite din fișier, NU folosiți tastatura.txt. Creați-vă voi
-    /// alt fișier propriu cu ce alt nume doriți.
-    /// Exemplu:
-    /// std::ifstream fis("date.txt");
-    /// for(int i = 0; i < nr2; ++i)
-    ///     fis >> v2[i];
-    ///
-    ///////////////////////////////////////////////////////////////////////////
-    ///                Exemplu de utilizare cod generat                     ///
-    ///////////////////////////////////////////////////////////////////////////
-    Helper helper;
-    helper.help();
-    ///////////////////////////////////////////////////////////////////////////
+    Student s1("Ion", "Popescu", 1);
+    Materie m1("Matematica", "Pop Ion");
+       Materie m2("Romana", "Pop Ion");
+    Nota n1(m1, 9);
+
+    Catalog catalog;
+        s1.adaugaNota(Nota(m1, 9));
+    s1.adaugaNota(Nota(m1, 10));
+    s1.adaugaNota(Nota(m2, 4));
+    catalog.adaugaStudent(s1);
+    catalog.afiseazaCatalog();
+    catalog.afiseazaCorigentii();
+
+
+    cout << s1 << endl;
+    cout << "Media notelor: " << s1.calculeazaMedia() << endl;
+    cout << "Corigent: " << (s1.esteCorigent() ? "Da" : "Nu") << endl;
+    cout << "Nota maxima: " << s1.notaMaxima() << endl;
+    catalog.afiseazaTopulClasei();
     return 0;
 }
