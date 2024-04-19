@@ -5,6 +5,38 @@
 
 using namespace std;
 
+class Parinte {
+private:
+    string nume;
+    string email;
+
+public:
+    Parinte(){}
+    Parinte(const string nume, const string email) : nume(nume), email(email) {}
+
+    // Constructor de copiere
+    Parinte(const Parinte& other) : nume(other.nume), email(other.email) {}
+
+    // Operator de copiere
+    Parinte& operator=(const Parinte& other) {
+        if (this != &other) {
+            nume = other.nume;
+            email = other.email;
+        }
+        return *this;
+    }
+
+    ~Parinte() {}
+
+    bool areParinte(){
+        return nume.size()>0 && email.size()>0;
+    }
+
+    void trimiteEmail(const string& informatia) {
+        cout << "Trimitere email la " << email << ": " << informatia << endl;
+    }
+};
+
 class Materie {
 private:
     string numeMaterie;
@@ -49,7 +81,7 @@ public:
     }
     ~Nota() {}
     int getValoare() const { return valoare; }
-    
+    Materie getMaterie() const { return materie; }
   
     friend ostream& operator<<(ostream& os, const Nota& n) {
         os << n.materie << ", Nota: " << n.valoare;
@@ -65,9 +97,10 @@ private:
     int id;
     vector<Nota> note;  // Array dinamic de note
     size_t numarNote;
+    Parinte p;
 
 public:
-    Student(const string &nume, const string &prenume, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()), numarNote(0) {}
+    Student(const string &nume, const string &prenume, const Parinte &p, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()), numarNote(0),p(p) {}
 
     // Constructor pentru initializarea notelor
     Student(const string &nume, const string &prenume, const int &id, const vector<Nota> &noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
@@ -99,6 +132,9 @@ public:
     }
      void adaugaNota(const Nota& nota) {
         note.push_back(nota);
+        if(p.areParinte()){
+            p.trimiteEmail(nume + " " + prenume + "a primit o nota: " +  to_string(nota.getValoare()) + " la " + nota.getMaterie().getMaterie());
+        }
     }
 
     const string getNumeComplet() const {
@@ -181,7 +217,7 @@ public:
 };
 
 int main() {
-    Student s1("Ion", "Popescu", 1);
+    Student s1("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
     Materie m1("Matematica", "Pop Ion");
        Materie m2("Romana", "Pop Ion");
     Nota n1(m1, 9);
