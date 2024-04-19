@@ -224,7 +224,7 @@ class Clasa {
 public:
     string numeClasa;
     Catalog catalog;
-    Clasa(string numeClasa,Catalog catalog) : numeClasa(numeClasa), catalog(catalog) {}
+    Clasa(const string &numeClasa,const Catalog &catalog) : numeClasa(numeClasa), catalog(catalog) {}
      double calculeazaMediaGenerala() {
         return catalog.calculeazaMediaGenerala();
     }
@@ -239,7 +239,7 @@ class Scoala {
 public:
     string numeScoala;
     vector<Clasa> clase;
-    Scoala(string numeScoala) : numeScoala(numeScoala) {}
+    explicit Scoala(const string &numeScoala) : numeScoala(numeScoala) {}
     void adaugaClasa(const Clasa& clasa) {
         clase.emplace_back(clasa);
         cout << "Clasa " << clasa.getNumeClasa() << " a fost adaugata la scoala " << numeScoala << "." << endl;
