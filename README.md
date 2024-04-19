@@ -1,4 +1,31 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# Simulator de Catalog Digital Școlar
+
+## Descriere
+Acest proiect simulează un sistem de catalog digital pentru o școală, permițând gestionarea claselor, a studenților și a notelor acestora. Sistemul facilitează, de asemenea, comunicarea automatizată cu părinții prin trimiterea de e-mailuri atunci când elevilor li se adaugă note noi. Acest proiect este ideal ca punct de plecare pentru dezvoltarea unei aplicații educaționale complexe.
+
+## Funcționalități
+### Gestionare Studenți
+Permite adăugarea și gestionarea studenților în sistem. Fiecare student este asociat cu un catalog de note și un părinte pentru comunicare.
+
+### Gestionare Note
+Studenții pot primi note pentru diferite materii. Sistemul calculează automat media notelor și determină dacă un student este corigent.
+
+### Gestionare Clase
+Fiecare clasă are un catalog propriu. Clasa poate calcula media generală a tuturor elevilor și poate fi sortată în raport cu alte clase bazat pe această medie.
+
+### Comunicare cu Părinții
+La adăugarea fiecărei note noi, sistemul trimite automat un e-mail către părintele asociat studentului, informându-l despre noua notă și situația academică curentă a elevului.
+
+### Sortarea Claselor
+Clasele pot fi sortate în funcție de media generală a elevilor, facilitând rapoarte rapide asupra performanței generale a școlii.
+
+### Afișarea Mediilor și Claselor
+Sistemul poate afișa toate clasele împreună cu mediile generale ale acestora, oferind o imagine de ansamblu asupra performanței academice.
+
+## Tehnologii Utilizate
+Proiectul este scris în C++ și folosește funcționalități standard ale limbajului pentru gestionarea colecțiilor de date și manipularea string-urilor.
+
+
 
 ### Important!
 Aveți voie cu cod generat de modele de limbaj la care nu ați contribuit semnificativ doar în folder-ul `generated`.
