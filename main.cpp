@@ -70,7 +70,7 @@ public:
     Student(const string &nume, const string &prenume, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()), numarNote(0) {}
 
     // Constructor pentru initializarea notelor
-    Student(const string &nume, const string &prenume, const int &id, const vector<Nota> noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
+    Student(const string &nume, const string &prenume, const int &id, const vector<Nota> &noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
        
     }
 
