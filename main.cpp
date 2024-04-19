@@ -12,7 +12,7 @@ private:
 
 public:
 	Materie(){}
-    Materie(const string numeMaterie, const string profesor) : numeMaterie(numeMaterie), profesor(profesor) {}
+    Materie(const string &numeMaterie, const string &profesor) : numeMaterie(numeMaterie), profesor(profesor) {}
     Materie(const Materie& other) : numeMaterie(other.numeMaterie), profesor(other.profesor) {}
     Materie& operator=(const Materie& other) {
         if (this != &other) {
@@ -38,7 +38,7 @@ private:
 
 public:
 	Nota(){}
-    Nota(Materie materie, const int valoare) : materie(materie), valoare(valoare) {}
+    Nota(Materie &materie, const int &valoare) : materie(materie), valoare(valoare) {}
     Nota(const Nota& other) : materie(other.materie), valoare(other.valoare) {}
     Nota& operator=(const Nota& other) {
         if (this != &other) {
@@ -70,7 +70,7 @@ public:
     Student(const string &nume, const string &prenume, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()), numarNote(0) {}
 
     // Constructor pentru initializarea notelor
-    Student(const string &nume, const string &prenume, const int &id, vector<Nota> noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
+    Student(const string &nume, const string &prenume, const int &id, const vector<Nota> noteArray, const size_t &numarNote) : nume(nume), prenume(prenume), id(id), numarNote(numarNote), note(noteArray) {
        
     }
 
