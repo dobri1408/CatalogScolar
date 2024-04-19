@@ -211,15 +211,59 @@ public:
             }
         }
     }
+     double calculeazaMediaGenerala() {
+        if (studenti.empty()) return 0.0;
+        double sumaMediilor = 0.0;
+        for (auto& student : studenti) {
+            sumaMediilor +=student.calculeazaMedia();
+            }
+        return sumaMediilor / studenti.size();
+    }
+};
+class Clasa {
+public:
+    string numeClasa;
+    Catalog catalog;
+    Clasa(string numeClasa,Catalog catalog) : numeClasa(numeClasa), catalog(catalog) {}
+     double calculeazaMediaGenerala() {
+        return catalog.calculeazaMediaGenerala();
+    }
+
+    const string getNumeClasa() const {
+        return numeClasa;
+    }
+
+};
+
+class Scoala {
+public:
+    string numeScoala;
+    vector<Clasa> clase;
+    Scoala(string numeScoala) : numeScoala(numeScoala) {}
+    void adaugaClasa(const Clasa& clasa) {
+        clase.emplace_back(clasa);
+        cout << "Clasa " << clasa.getNumeClasa() << " a fost adaugata la scoala " << numeScoala << "." << endl;
+    }
+    void sorteazaClaseDupaMedie() {
+        sort(clase.begin(), clase.end(), [](Clasa a,  Clasa& b) {
+            return a.calculeazaMediaGenerala() > b.calculeazaMediaGenerala();
+        });
+        for(auto c: clase){
+            cout << c.getNumeClasa() << " "<<c.calculeazaMediaGenerala() << "\n";
+        }
+    }
 };
 
 int main() {
     Student s1("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
     Materie m1("Matematica", "Pop Ion");
-       Materie m2("Romana", "Pop Ion");
+    Materie m2("Romana", "Pop Ion");
     Nota n1(m1, 9);
 
     Catalog catalog;
+    Scoala sc =Scoala("ICHB");
+    sc.adaugaClasa(Clasa("12G",catalog));
+
         s1.adaugaNota(Nota(m1, 9));
     s1.adaugaNota(Nota(m1, 10));
     s1.adaugaNota(Nota(m2, 4));
@@ -233,5 +277,7 @@ int main() {
     cout << "Corigent: " << (s1.esteCorigent() ? "Da" : "Nu") << endl;
     cout << "Nota maxima: " << s1.notaMaxima() << endl;
     catalog.afiseazaTopulClasei();
+    sc.sorteazaClaseDupaMedie();
+
     return 0;
 }
