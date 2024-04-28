@@ -65,10 +65,10 @@ using namespace std;
             this->result = result;
             this->count = count;
 
-//
-//            this->maxNum = getMaxValue(result);
-//
-//            this->height = maxNum / this->count;
+
+            this->maxNum = getMaxValue(result);
+
+            this->height = maxNum / this->count;
 
 
 
@@ -433,7 +433,7 @@ int main() {
 
     cout << "\n";
 //    sc.sorteazaClaseDupaMedie();
-   auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
+   auto cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
 //
    cbc->show();
 
