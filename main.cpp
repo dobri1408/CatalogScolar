@@ -5,6 +5,152 @@
 
 using namespace std;
 
+
+
+#include <iostream>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+    struct BarChartStruct{
+        string name;
+        double value;
+    };
+
+
+    class BarChart{
+    private:
+        vector<BarChartStruct> result;
+        string title;
+        int size;
+
+        double height;
+        double maxNum;
+        int count;
+        auto getMaxValue(vector<BarChartStruct> input){
+
+            double max = 0;
+            for (auto& i: input){
+                if (i.value > max){
+                    max = i.value;
+                }
+            }
+
+            return max;
+
+        }
+
+        void numString(int num, int maxNum){
+            string n = to_string(num);
+            string mn = to_string(maxNum);
+
+            int c = n.size();
+            int mc = mn.size();
+
+            if (c < mc){
+
+                for (int i = 0; i < mc - c; i++) cout<<"0";
+
+            }
+            cout<<n;
+        }
+
+    public:
+        BarChart(string title, int size, int count, vector<BarChartStruct> result){
+
+            this->title = title;
+            this->size = size;
+
+            this->result = result;
+            this->count = count;
+
+
+            this->maxNum = getMaxValue(result);
+
+            this->height = maxNum / this->count;
+
+
+
+
+        }
+        void insert(string name, double value){
+
+            this->result.push_back({name, value});
+            this->maxNum = getMaxValue(result);
+            this->height = maxNum / this->count;
+        }
+        void show(){
+            int size = this->size;
+            int x_width = (int)this->result.size() * size;
+
+
+            cout<<"====[ "<<this->title<<" ]";
+            for (int z = 0; z < x_width * 2; z++) cout<<"=";
+            cout<<endl;
+            cout<<endl;
+            int maxGap = to_string(this->maxNum).size();
+
+            for (auto& r: this->result){
+
+                for (int w = 0; w < maxGap; w++) cout<<" ";
+                cout<<"| "<<r.name<<" : "<<r.value;
+                if (r.value == this->maxNum) cout<<" √ (Max)"<<endl;
+                else cout<<endl;
+
+            }
+
+            cout<<endl;
+            for (double y = 0; y < this->height; y++){
+                numString((this->height - y) * this->count, this->maxNum);
+                numString(-(this->height - y) * this->count-1, this->maxNum);
+                cout<<"| ";
+                for (int x = 0; x < x_width; x++){
+                    if (x % size == 0){
+                        int index = x / size;
+                        double value = this->result[index].value;
+
+                        if (this->height - y <= (double)(value / this->count)){
+                            cout<<"▩▩▩"; //
+                        }else{
+                            cout<<"   ";
+                        }
+                    }else{
+                        cout<<"   ";
+                    }
+                }
+                cout<<endl;
+            }
+            for (int i = 0;i < x_width + 10; i++) cout<<"▬▬▬";
+            cout<<endl;
+            for (int a = 0;a < 10; a++){
+                cout<<"  ";
+                for (int w = 0; w < 3; w++) cout<<" ";
+                for (int i = 0;i < x_width; i++){
+                    if (i % size == 0){
+
+                        string n = this->result[i / size].name;
+
+                        if (a < (int)n.size()){
+
+                            cout<<" "<<n[a]<<" ";
+
+                        }else{
+                            cout<<"   ";
+                        }
+
+                    }else{
+                        cout<<"   ";
+                    }
+                }
+                cout<<endl;
+            }
+            cout<<endl;
+        }
+    };
+
+
+
 class Parinte {
 private:
     string nume;
@@ -212,11 +358,13 @@ public:
         }
     }
      double calculeazaMediaGenerala() {
+        cout << studenti.size();
         if (studenti.empty()) return 0.0;
         double sumaMediilor = 0.0;
         for (auto& student : studenti) {
             sumaMediilor +=student.calculeazaMedia();
             }
+        cout << "suma mediilor" << sumaMediilor<<"\n";
         return sumaMediilor / studenti.size();
     }
 };
@@ -230,7 +378,7 @@ public:
         return catalog.calculeazaMediaGenerala();
     }
 
-    const string getNumeClasa() const {
+     string getNumeClasa() const {
         return numeClasa;
     }
 
@@ -246,32 +394,43 @@ public:
         clase.emplace_back(clasa);
         cout << "Clasa " << clasa.getNumeClasa() << " a fost adaugata la scoala " << numeScoala << "." << endl;
     }
-    void sorteazaClaseDupaMedie() {
+    vector<BarChartStruct> sorteazaClaseDupaMedie() {
+        vector<BarChartStruct> claseSortate;
         sort(clase.begin(), clase.end(), [](Clasa a,  Clasa& b) {
             return a.calculeazaMediaGenerala() > b.calculeazaMediaGenerala();
         });
-        for(auto c: clase){
-            cout << c.getNumeClasa() << " "<<c.calculeazaMediaGenerala() << "\n";
-        }
+       for (auto c:clase){
+           cout << c.calculeazaMediaGenerala()<<"\n";
+           claseSortate.push_back({c.getNumeClasa(),c.calculeazaMediaGenerala()});
+       }
+       return claseSortate;
     }
 };
 
 int main() {
     Student s1("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
+    Student s2("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
     Materie m1("Matematica", "Pop Ion");
     Materie m2("Romana", "Pop Ion");
     Nota n1(m1, 9);
-
+    s1.adaugaNota(Nota(m1, 9));
+    s1.adaugaNota(Nota(m1, 10));
+    s2.adaugaNota(Nota(m2, 4));
     Catalog catalog;
     Scoala sc =Scoala("ICHB");
-    sc.adaugaClasa(Clasa("12G",catalog));
-
-        s1.adaugaNota(Nota(m1, 9));
-    s1.adaugaNota(Nota(m1, 10));
-    s1.adaugaNota(Nota(m2, 4));
     catalog.adaugaStudent(s1);
+    catalog.adaugaStudent(s2);
+    Catalog catalog2;
+    catalog2.adaugaStudent(s1);
+
     catalog.afiseazaCatalog();
     catalog.afiseazaCorigentii();
+    sc.adaugaClasa(Clasa("12G",catalog));
+    sc.adaugaClasa(Clasa("11G",catalog2));
+
+
+
+
 
 
     cout << s1 << endl;
@@ -279,7 +438,12 @@ int main() {
     cout << "Corigent: " << (s1.esteCorigent() ? "Da" : "Nu") << endl;
     cout << "Nota maxima: " << s1.notaMaxima() << endl;
     catalog.afiseazaTopulClasei();
+
     sc.sorteazaClaseDupaMedie();
+    auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
+
+    cbc->show();
+
 
     return 0;
 }
