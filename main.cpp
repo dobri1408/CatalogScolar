@@ -2,16 +2,10 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-
-using namespace std;
-
-
-
-#include <iostream>
 #include <cmath>
-#include <vector>
 
 using namespace std;
+
 
     struct BarChartStruct{
         string name;
@@ -183,7 +177,7 @@ private:
     string profesor;
 
 public:
-	Materie(){}
+    Materie(){}
     Materie(const string &numeMaterie, const string &profesor) : numeMaterie(numeMaterie), profesor(profesor) {}
     Materie(const Materie& other) : numeMaterie(other.numeMaterie), profesor(other.profesor) {}
     Materie& operator=(const Materie& other) {
