@@ -221,9 +221,10 @@ public:
     }
 };
 class Clasa {
-public:
+private:
     string numeClasa;
     Catalog catalog;
+public:
     Clasa(const string &numeClasa,const Catalog &catalog) : numeClasa(numeClasa), catalog(catalog) {}
      double calculeazaMediaGenerala() {
         return catalog.calculeazaMediaGenerala();
@@ -236,9 +237,10 @@ public:
 };
 
 class Scoala {
-public:
+private:
     string numeScoala;
     vector<Clasa> clase;
+public:
     explicit Scoala(const string &numeScoala) : numeScoala(numeScoala) {}
     void adaugaClasa(const Clasa& clasa) {
         clase.emplace_back(clasa);
