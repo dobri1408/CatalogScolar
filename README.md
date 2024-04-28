@@ -24,7 +24,7 @@ Sistemul poate afișa toate clasele împreună cu mediile generale ale acestora,
 
 ## Tehnologii Utilizate
 Proiectul este scris în C++ și folosește funcționalități standard ale limbajului pentru gestionarea colecțiilor de date și manipularea string-urilor.
-
+Pentru grafic m-am inspirat din https://github.com/abthahiahmed/console-bar-chart-library/tree/main
 
 
 ### Important!
