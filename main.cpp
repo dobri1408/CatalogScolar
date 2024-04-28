@@ -57,7 +57,7 @@ using namespace std;
         }
 
     public:
-        BarChart(const string &title, int size, int count, const vector<BarChartStruct> &result){
+        BarChart(const string &title, int size, int count, const vector<BarChartStruct> result){
 
             this->title = title;
             this->size = size;
@@ -432,10 +432,10 @@ int main() {
     catalog.afiseazaTopulClasei();
 
     cout << "\n";
-    sc.sorteazaClaseDupaMedie();
-//    auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
+//    sc.sorteazaClaseDupaMedie();
+   auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
 //
-//    cbc->show();
+   cbc->show();
 
 
     return 0;
