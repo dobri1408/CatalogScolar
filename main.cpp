@@ -434,7 +434,7 @@ int main() {
     cout << "\n";
     auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
 
-    cbc->show();
+    //cbc->show();
 
 
     return 0;
