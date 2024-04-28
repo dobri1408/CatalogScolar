@@ -57,7 +57,7 @@ using namespace std;
         }
 
     public:
-        BarChart(const string &title, int size, int count, const vector<BarChartStruct> result){
+        BarChart(const string &title, int size, int count, const vector<BarChartStruct> &result){
 
             this->title = title;
             this->size = size;
@@ -65,10 +65,10 @@ using namespace std;
             this->result = result;
             this->count = count;
 
-
-            this->maxNum = getMaxValue(result);
-
-            this->height = maxNum / this->count;
+//
+//            this->maxNum = getMaxValue(result);
+//
+//            this->height = maxNum / this->count;
 
 
 
