@@ -74,12 +74,7 @@ using namespace std;
 
 
         }
-        void insert(string name, double value){
 
-            this->result.push_back({name, value});
-            this->maxNum = getMaxValue(result);
-            this->height = maxNum / this->count;
-        }
         void show(){
             int x_width = (int)this->result.size() * this->size;
 
