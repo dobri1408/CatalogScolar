@@ -432,9 +432,10 @@ int main() {
     catalog.afiseazaTopulClasei();
 
     cout << "\n";
-    auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
-
-    cbc->show();
+    sc.sorteazaClaseDupaMedie();
+//    auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
+//
+//    cbc->show();
 
 
     return 0;
