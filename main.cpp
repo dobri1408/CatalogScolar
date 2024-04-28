@@ -173,7 +173,7 @@ public:
 
     ~Parinte() {}
 
-    bool areParinte(){
+    bool isDataSet(){
         return nume.size()>0 && email.size()>0;
     }
 
@@ -241,10 +241,10 @@ private:
     string prenume;
     int id;
     vector<Nota> note;  // Array dinamic de note
-    Parinte p;
+    Parinte parinte;
 
 public:
-    Student(const string &nume, const string &prenume, const Parinte &p, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()),p(p) {}
+    Student(const string &nume, const string &prenume, const Parinte &p, const int &id) : nume(nume), prenume(prenume), id(id), note(vector<Nota>()),parinte(p) {}
 
     // Constructor pentru initializarea notelor
     Student(const string &nume, const string &prenume, const int &id, const vector<Nota> &noteArray) : nume(nume), prenume(prenume), id(id), note(noteArray) {
@@ -274,8 +274,8 @@ public:
     }
      void adaugaNota(const Nota& nota) {
         note.push_back(nota);
-        if(p.areParinte()){
-            p.trimiteEmail(nume + " " + prenume + "a primit o nota: " +  to_string(nota.getValoare()) + " la " + nota.getMaterie().getMaterie());
+        if(parinte.isDataSet()){
+            parinte.trimiteEmail(nume + " " + prenume + "a primit o nota: " +  to_string(nota.getValoare()) + " la " + nota.getMaterie().getMaterie());
         }
     }
 
