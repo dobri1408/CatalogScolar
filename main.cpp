@@ -24,10 +24,10 @@ using namespace std;
         vector<BarChartStruct> result;
         string title;
         int size;
-
         double height;
         double maxNum;
         int count;
+
         auto getMaxValue(vector<BarChartStruct> input){
 
             double max = 0;
@@ -271,7 +271,7 @@ public:
     // Destructor
     ~Student() {
        note.resize(0);
-        cout << "Distrug Student: " << nume << " " << prenume << endl;
+
     }
      void adaugaNota(const Nota& nota) {
         note.push_back(nota);
@@ -358,13 +358,11 @@ public:
         }
     }
      double calculeazaMediaGenerala() {
-        cout << studenti.size();
         if (studenti.empty()) return 0.0;
         double sumaMediilor = 0.0;
         for (auto& student : studenti) {
             sumaMediilor +=student.calculeazaMedia();
             }
-        cout << "suma mediilor" << sumaMediilor<<"\n";
         return sumaMediilor / studenti.size();
     }
 };
@@ -400,7 +398,6 @@ public:
             return a.calculeazaMediaGenerala() > b.calculeazaMediaGenerala();
         });
        for (auto c:clase){
-           cout << c.calculeazaMediaGenerala()<<"\n";
            claseSortate.push_back({c.getNumeClasa(),c.calculeazaMediaGenerala()});
        }
        return claseSortate;
@@ -408,6 +405,7 @@ public:
 };
 
 int main() {
+
     Student s1("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
     Student s2("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
     Materie m1("Matematica", "Pop Ion");
@@ -439,7 +437,7 @@ int main() {
     cout << "Nota maxima: " << s1.notaMaxima() << endl;
     catalog.afiseazaTopulClasei();
 
-    sc.sorteazaClaseDupaMedie();
+    cout << "\n";
     auto *cbc = new BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
 
     cbc->show();
