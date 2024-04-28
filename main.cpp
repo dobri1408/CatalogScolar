@@ -41,9 +41,9 @@ using namespace std;
 
         }
 
-        void numString(int num, int maxNum){
+        void numString(int num, int ma){
             string n = to_string(num);
-            string mn = to_string(maxNum);
+            string mn = to_string(ma);
 
             int c = n.size();
             int mc = mn.size();
