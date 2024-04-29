@@ -397,46 +397,88 @@ public:
        return claseSortate;
     }
 };
-
 int main() {
+    // Define subjects
+    Materie matematica("Matematica", "Ionescu Maria");
+    Materie romana("Romana", "Georgescu Ion");
+    Materie fizica("Fizica", "Popescu Elena");
+    Materie chimie("Chimie", "Dumitru George");
+    Materie istorie("Istorie", "Vasilescu Dan");
+    Materie geografie("Geografie", "Marinescu Laura");
 
-    Student s1("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
-    Student s2("Ion", "Popescu",Parinte("Alex","alex@gmail.com"), 1);
-    Materie m1("Matematica", "Pop Ion");
-    Materie m2("Romana", "Pop Ion");
-    Nota n1(m1, 9);
-    s1.adaugaNota(Nota(m1, 9));
-    s1.adaugaNota(Nota(m1, 10));
-    s2.adaugaNota(Nota(m2, 4));
-    Catalog catalog;
-    Scoala sc =Scoala("ICHB");
-    catalog.adaugaStudent(s1);
-    catalog.adaugaStudent(s2);
-    Catalog catalog2;
-    catalog2.adaugaStudent(s1);
+    // Define parents
+    Parinte parent1("Popescu Elena", "elena.popescu@gmail.com");
+    Parinte parent2("Ionescu Marius", "marius.ionescu@yahoo.com");
+    Parinte parent3("Vasilescu Ana", "ana.vasilescu@outlook.com");
 
-    catalog.afiseazaCatalog();
-    catalog.afiseazaCorigentii();
-    sc.adaugaClasa(Clasa("12G",catalog));
-    sc.adaugaClasa(Clasa("11G",catalog2));
+    // Create students for class 12B
+    Student s1("Ion", "Popescu", parent1, 1);
+    Student s2("Maria", "Ionescu", parent2, 2);
+    Student s3("Dan", "Vasilescu", parent3, 3);
 
+    // Create students for class 11A
+    Student s4("Laura", "Marinescu", parent1, 4);
+    Student s5("George", "Matei", parent2, 5);
+    Student s6("Elena", "Dumitru", parent3, 6);
 
+    // Add grades to students in class 12B
+    s1.adaugaNota(Nota(matematica, 9));
+    s1.adaugaNota(Nota(romana, 10));
+    s2.adaugaNota(Nota(fizica, 8));
+    s2.adaugaNota(Nota(chimie, 7));
+    s3.adaugaNota(Nota(istorie, 10));
+    s3.adaugaNota(Nota(geografie, 10));
 
+    // Add grades to students in class 11A
+    s4.adaugaNota(Nota(matematica, 8));
+    s4.adaugaNota(Nota(romana, 7));
+    s5.adaugaNota(Nota(fizica, 10));
+    s5.adaugaNota(Nota(chimie, 9));
+    s6.adaugaNota(Nota(istorie, 5));
+    s6.adaugaNota(Nota(geografie, 6));
 
+    // Create catalogs for each class
+    Catalog catalog12B;
+    Catalog catalog11A;
 
+    // Add students to catalogs
+    catalog12B.adaugaStudent(s1);
+    catalog12B.adaugaStudent(s2);
+    catalog12B.adaugaStudent(s3);
+    catalog11A.adaugaStudent(s4);
+    catalog11A.adaugaStudent(s5);
+    catalog11A.adaugaStudent(s6);
 
-    cout << s1 << endl;
-    cout << "Media notelor: " << s1.calculeazaMedia() << endl;
-    cout << "Corigent: " << (s1.esteCorigent() ? "Da" : "Nu") << endl;
-    cout << "Nota maxima: " << s1.notaMaxima() << endl;
-    catalog.afiseazaTopulClasei();
+    // Create school
+    Scoala sc("Colegiul National ICHB");
 
-    cout << "\n";
-//    sc.sorteazaClaseDupaMedie();
-   auto cbc =  BarChart("Clasele dupa medie", 2, 1,  sc.sorteazaClaseDupaMedie());
-//
-   cbc.show();
+    // Add classes to the school
+    sc.adaugaClasa(Clasa("12B", catalog12B));
+    sc.adaugaClasa(Clasa("11A", catalog11A));
 
+    // Display school statistics
+    cout << "Catalogul clasei 12B:" << endl;
+    catalog12B.afiseazaCatalog();
+    cout << "Catalogul clasei 11A:" << endl;
+    catalog11A.afiseazaCatalog();
+
+    cout << "Studentii corigenti din 12B:" << endl;
+    catalog12B.afiseazaCorigentii();
+    cout << "Studentii corigenti din 11A:" << endl;
+    catalog11A.afiseazaCorigentii();
+
+    cout << "Topul clasei 12B dupa medie:" << endl;
+    catalog12B.afiseazaTopulClasei();
+    cout << "Topul clasei 11A dupa medie:" << endl;
+    catalog11A.afiseazaTopulClasei();
+
+    cout << "Media generala a clasei 12B: " << Clasa("12B", catalog12B).calculeazaMediaGenerala() << endl;
+    cout << "Media generala a clasei 11A: " << Clasa("11A", catalog11A).calculeazaMediaGenerala() << endl;
+
+    // Generate and show a bar chart of class averages in the school
+    auto claseSortate = sc.sorteazaClaseDupaMedie();
+    BarChart clasaChart("Clasele dupa medie", 2, 1, claseSortate);
+    clasaChart.show();
 
     return 0;
 }
