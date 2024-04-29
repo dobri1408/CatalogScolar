@@ -415,6 +415,7 @@ int main() {
     Student s5("George", "Matei", parent2, 5);
     Student s6("Elena", "Dumitru", parent3, 6);
 
+    cout << "Nota maxima: " << s1.notaMaxima() << endl;
     // Add grades to students in class 12B
     s1.adaugaNota(Nota(matematica, 9));
     s1.adaugaNota(Nota(romana, 10));
