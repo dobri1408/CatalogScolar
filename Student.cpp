@@ -130,9 +130,6 @@ void Student::suntBolnav()   {
 
     std::ostringstream current_date_stream;
     current_date_stream << std::put_time(current_tm, "%Y-%m-%d");
-    std::ostringstream future_date_stream;
-
-    std::vector<std::pair<std::string, std::string>> dates;
     scutiri.push_back(std::make_pair(current_date_stream.str(), current_date_stream.str()));
 
 }

@@ -133,10 +133,6 @@ add_executable(${PROJECT_NAME} main.cpp
         Person.cpp
         Profesor.h
         Profesor.cpp
-        SchoolStaff.cpp
-        ConcediuMedical.cpp
-        ConcediuMedical.cpp
-        ConcediuMedical.cpp
         Exceptions.h
 )
 

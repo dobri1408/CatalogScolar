@@ -23,11 +23,11 @@ std::string Clasa::getNumeClasa() const {
 
 void Clasa::checkAndPerformActivity(Person* person) {
 
-    Student* student = dynamic_cast<Student*>(person);
-    if (student) {
+    Student* st = dynamic_cast<Student*>(person);
+    if (st) {
             if(generateRandom()==0) //"cu sanse de 30 la suta s-a imbolnavit studentul"
             {
-                student->suntBolnav();
+                st->suntBolnav();
             }
     } else {
         Profesor* professor = dynamic_cast<Profesor*>(person);

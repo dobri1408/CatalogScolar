@@ -11,19 +11,19 @@
 
 class InvalidMaterieException : public std::runtime_error {
 public:
-    InvalidMaterieException(const std::string& msg)
+    explicit InvalidMaterieException(const std::string& msg)
             : std::runtime_error("Invalid Materie: " + msg) {}
 };
 
 class TeachingException : public std::runtime_error {
 public:
-    TeachingException(const std::string& msg)
+    explicit TeachingException(const std::string& msg)
             : std::runtime_error("Teaching Error: " + msg) {}
 };
 
 class SchoolAdminException : public std::runtime_error {
 public:
-    SchoolAdminException(const std::string& msg)
+    explicit SchoolAdminException(const std::string& msg)
             : std::runtime_error("School Administration Error: " + msg) {}
 };
 

@@ -26,13 +26,8 @@ Profesor& Profesor::operator=(const Profesor &other) {
 // Destructor
 Profesor::~Profesor() {}
 
-void Profesor::addSubject(const std::string &subject) {
-    subjects.push_back(subject);
-}
 
-std::vector<std::string> Profesor::getSubjects() const {
-    return subjects;
-}
+
 
 
 std::string Profesor::getDescription() const {
@@ -49,8 +44,6 @@ std::string Profesor::getDescription() const {
      std::ostringstream current_date_stream;
      current_date_stream << std::put_time(current_tm, "%Y-%m-%d");
 
-
-     std::vector<std::pair<std::string, std::string>> dates;
 
      concedii_medicale.push_back(std::make_pair(current_date_stream.str(), current_date_stream.str()));
      for(auto concediu:concedii_medicale) {

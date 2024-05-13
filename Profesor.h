@@ -9,8 +9,6 @@
 #include <vector>
 #include <string>
 
-#include "ConcediuMedical.h"
-
 class Profesor : public Person {
 private:
     std::vector<const std::pair<std::string, const std::string>> concedii_medicale;  // Subjects the professor teaches
@@ -25,10 +23,8 @@ public:
 
     virtual ~Profesor();
 
-    void addSubject(const std::string &subject);
     bool esteProfesorulInConcediu() const;
 
-    std::vector<std::string> getSubjects() const;
 
     std::string getDescription() const override;
     void suntBolnav()  override;
