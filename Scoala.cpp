@@ -11,7 +11,7 @@ Scoala::Scoala(const std::string &numeScoala) : numeScoala(numeScoala),maximumCl
 
 void Scoala::adaugaClasa(const Clasa& clasa) {
 
-        if (clase.size() == maximumClassesCapacity) {
+        if ((int)clase.size() == maximumClassesCapacity) {
             throw SchoolAdminException("Nu mai sunt sali pentru inca o clasa");
         }
         clase.push_back(clasa);
