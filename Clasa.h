@@ -18,7 +18,7 @@ private:
 
 public:
     Clasa(const std::string &numeClasa, const Catalog &catalog);
-    const double calculeazaMediaGenerala() const;
+    double calculeazaMediaGenerala() const;
     std::string getNumeClasa() const;
     void simuleazaZiDeScoala();
     void checkAndPerformActivity(Person* person);

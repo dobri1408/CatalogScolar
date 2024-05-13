@@ -13,7 +13,7 @@ int generateRandom() {
 Clasa::Clasa(const std::string &numeClasa, const Catalog &catalog)
         : numeClasa(numeClasa), catalog(catalog) {}
 
-const double Clasa::calculeazaMediaGenerala() const {
+ double Clasa::calculeazaMediaGenerala() const {
     return catalog.calculeazaMediaGenerala();
 }
 

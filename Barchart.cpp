@@ -1,6 +1,6 @@
 //
 // Created by Dobricean Ioan Dorian on 10.05.2024.
-#include "BarChart.h"
+#include "Barchart.h"
 #include <algorithm>
 
 BarChart::BarChart(const std::string& title, int size, int count, const std::vector<BarChartStruct>& result) {

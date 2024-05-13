@@ -7,7 +7,7 @@
 
 
 Student::Student(const std::string &nume,const std::string &email, const Parinte &p, const int &id)
-        : Person(nume,email), parinte(p), id(id) {}
+        : Person(nume,email), id(id),parinte(p) {}
 
 Student::Student(const std::string &nume,const std::string &email, const int &id, const std::vector<Nota> &noteArray)
         :Person(nume,email), id(id), note(noteArray) {}
