@@ -13,8 +13,6 @@
 
 class Student : public Person  {
 private:
-    std::string nume;
-    std::string prenume;
     int id;
     std::vector<Nota> note;  // Dynamic array of grades
     Parinte parinte;
@@ -28,7 +26,6 @@ public:
     ~Student();
 
     void adaugaNota(const Nota& nota);
-    const std::string getNumeComplet() const;
     double calculeazaMedia() const;
     bool esteCorigent() const;
     int notaMaxima() const;

@@ -11,7 +11,7 @@ void Catalog::afiseazaTopulClasei() {
     });
 
     for (auto& student : studenti) {
-        std::cout << student.getNumeComplet() << " - Media: " << student.calculeazaMedia() << std::endl;
+        std::cout << student.getDescription() << " - Media: " << student.calculeazaMedia() << std::endl;
     }
 }
 
@@ -32,7 +32,7 @@ void Catalog::afiseazaCorigentii() {
     std::cout << "Studentii corigenti sunt:" << std::endl;
     for (const auto& student : studenti) {
         if (student.esteCorigent()) {
-            std::cout << student.getNumeComplet() << std::endl;
+            std::cout << student.getDescription() << std::endl;
         }
     }
 }

@@ -10,7 +10,7 @@ Student::Student(const std::string &nume,const std::string &email, const Parinte
         : Person(nume,email), parinte(p), id(id) {}
 
 Student::Student(const std::string &nume,const std::string &email, const int &id, const std::vector<Nota> &noteArray)
-        :Person(nume,email), nume(nume), prenume(prenume), id(id), note(noteArray) {}
+        :Person(nume,email), id(id), note(noteArray) {}
 
 Student::Student(const Student& other)
         : Person(other), id(other.id), note(other.note), parinte(other.parinte) {}
@@ -18,8 +18,6 @@ Student::Student(const Student& other)
 Student& Student::operator=(const Student& other) {
     if (this != &other) {
         Person::operator=(other);
-        nume = other.nume;
-        prenume = other.prenume;
         id = other.id;
         note = other.note;
         parinte = other.parinte;
@@ -74,7 +72,7 @@ void Student::adaugaNota(const Nota& nota) {
                 throw TeachingException("Elevul are scutire, nu este posibila nota");
         }
         if (parinte.isDataSet()) {
-            parinte.sendEmail(nume + " " + prenume + " a primit o nota: " + std::to_string(nota.getValoare()) + " la " +
+            parinte.sendEmail(getDescription() + " a primit o nota: " + std::to_string(nota.getValoare()) + " la " +
                               nota.getMaterie()->getMaterie());
         }
         else   throw TeachingException("Elevul are parinte setat, nu este posibila nota");
@@ -85,9 +83,6 @@ void Student::adaugaNota(const Nota& nota) {
     }
 }
 
-const std::string Student::getNumeComplet() const {
-    return nume + " " + prenume;
-}
 std::string Student::getDescription() const {
     return "Student: " + name + ", ID: " + std::to_string(id); // Properly implemented as required by the abstract method in Person
 }
@@ -116,7 +111,7 @@ int Student::notaMaxima() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Student& s) {
-    os << "ID: " << s.id << ", Nume: " << s.nume << ", Prenume: " << s.prenume;
+    os << "ID: " << s.id << ", Nume: " << s.getDescription();
     if (!s.note.empty()) {
         os << ", Note: ";
         for (const auto& n : s.note) {
