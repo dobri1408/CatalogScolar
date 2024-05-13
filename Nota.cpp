@@ -1,6 +1,6 @@
 #include "Nota.h"
 
-Nota::Nota() : valoare(0) {}
+Nota::Nota() :materie(),valoare(0) {}
 
 Nota::Nota(Materie* &materie, const int &valoare) : materie(materie), valoare(valoare) {}
 
