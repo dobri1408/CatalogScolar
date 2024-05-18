@@ -144,21 +144,15 @@ int main() {
     auto claseSortate2 = sc2.sorteazaClaseDupaMedie();
     BarChart clasaChart2("Clasele dupa medie", 2, 1, claseSortate2);
 //    clasaChart2.show();
-    std::cout << "Bun venit la sistemul national de educatie\n";
-    std::cout << "Alege o scoala\n";
-    std::cout<<"1. Scoala "<<sc.getNumeScoala() << "\n";
-    std::cout<<"2. Scoala "<<sc2.getNumeScoala() << "\n";
-    std::cout<<"Alege 1 sau 2\n";
-    int var;
-    std::cin>>var;
-    if(var == 1) {
+    std::cout <<" Creare fisiere csv\n";
+
         clasaChart.show();
         sc.exportCSV();
-    }
-    if(var == 2) {
+
+
         clasaChart2.show();
         sc2.exportCSV();
-    }
+
 
 
     return 0;
