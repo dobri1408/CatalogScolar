@@ -11,7 +11,7 @@
 
 class Profesor : public Person {
 private:
-    std::vector<const std::pair<std::string, const std::string>> concedii_medicale;  // Subjects the professor teaches
+    std::vector< std::pair<std::string,  std::string>> concedii_medicale;  // Subjects the professor teaches
     std::vector<std::string>subjects;
 
 public:
