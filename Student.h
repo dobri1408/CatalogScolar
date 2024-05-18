@@ -10,6 +10,7 @@
 #include "Nota.h"
 #include "Person.h"  // Include the Nota header to use the Nota class
 #include "Parinte.h" // Include the Parinte header to use the Parinte class
+#include <chrono>
 
 class Student : public Person  {
 private:
