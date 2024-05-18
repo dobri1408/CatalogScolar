@@ -30,7 +30,8 @@ int main() {
     Profesor* professor =  new Profesor("Alice Johnson", "alice@example.com");
     Profesor* professor2 =  new Profesor("Alice Mark", "alice@example.com");
     professor->suntBolnav(); //virtual function
-    Materie* materie=new Materie("",professor);
+    Materie* materie =new Materie("",professor);
+    delete materie;
 
     Materie* matematica = new Materie("Matematica",  professor);
     Materie* romana =  new Materie("Romana",  professor);
