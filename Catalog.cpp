@@ -21,7 +21,7 @@ void Catalog::afiseazaCatalog(std::ostream& fout) {
     }
 }
 std::vector<Student> Catalog::returnStudents() {
-   return studenti;
+    return studenti;
 }
 
 std::vector<Person*> Catalog::getPersonal() {
@@ -48,13 +48,19 @@ double Catalog::calculeazaMediaGenerala() const {
 
 void Catalog::adaugaMateriileObligatorii(std::vector<Materie*> v) {
 
-   if(v.size()>16){
-       throw SchoolAdminException("Prea multe materii");
+    if(v.size()>16){
+        throw SchoolAdminException("Prea multe materii");
 
-   }
+    }
     for(auto materie:v){
         personal.push_back(const_cast<Person*>(static_cast<const Person*>(materie->getProfesor())));
 
     }
-   materii = v;
+    materii = v;
+}
+
+Catalog::~Catalog() {
+    for (auto student : personal) {
+        delete student;
+    }
 }

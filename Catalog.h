@@ -16,6 +16,8 @@ private:
     std::vector<Materie*>materii;
     std::vector<Person*> personal;
 public:
+    virtual ~Catalog();
+
     void adaugaStudent(const Student& student);
     void afiseazaTopulClasei();
     void afiseazaCatalog(std::ostream& fout);

@@ -25,9 +25,7 @@ Student& Student::operator=(const Student& other) {
     return *this;
 }
 
-Student::~Student() {
-    note.clear();
-}
+
 
 static std::tm parseDate(const std::string& dateStr) {
     std::tm tm = {};

@@ -24,7 +24,7 @@ public:
     Student(const std::string &nume, const std::string &email, const int &id, const std::vector<Nota> &noteArray);
     Student(const Student& other);
     Student& operator=(const Student& other);
-    ~Student();
+
 
     void adaugaNota(const Nota& nota);
     double calculeazaMedia() const;
