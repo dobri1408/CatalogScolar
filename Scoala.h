@@ -25,6 +25,9 @@ public:
     static void setAcademicYear(const std::string& year) {
         currentAcademicYear = year;  // Set the academic year for all schools
     }
+    void exportCSV() const;
+
+    const std::string &getNumeScoala() const;
 
     static std::string getAcademicYear() {
         return currentAcademicYear;

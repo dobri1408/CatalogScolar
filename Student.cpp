@@ -84,7 +84,7 @@ void Student::adaugaNota(const Nota& nota) {
 }
 
 std::string Student::getDescription() const {
-    return "Student: " + name + ", ID: " + std::to_string(id); // Properly implemented as required by the abstract method in Person
+    return name + ", " + std::to_string(id)+","; // Properly implemented as required by the abstract method in Person
 }
 
 double Student::calculeazaMedia() const {
@@ -111,13 +111,13 @@ int Student::notaMaxima() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Student& s) {
-    os << "ID: " << s.id << ", Nume: " << s.getDescription();
+    os << s.getDescription();
     if (!s.note.empty()) {
-        os << ", Note: ";
         for (const auto& n : s.note) {
             os << n << " ";
         }
     }
+    os<<"\n";
     return os;
 }
 

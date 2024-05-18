@@ -1,6 +1,7 @@
 #include "Scoala.h"
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 #include "Exceptions.h"
 
 std::string Scoala::currentAcademicYear = "2024-2025";
@@ -35,5 +36,20 @@ std::vector<BarChartStruct> Scoala::sorteazaClaseDupaMedie() {
 void Scoala::simuleazaZiDeScoala() {
     for (auto clasa:clase){
         clasa.simuleazaZiDeScoala();
+    }
+}
+
+const std::string &Scoala::getNumeScoala() const {
+    return numeScoala;
+}
+
+void Scoala::exportCSV() const {
+    for (auto clasa : clase){
+        std::string fileName = clasa.getNumeClasa()+".csv";
+        std::ofstream fout(fileName);
+        auto catalog = clasa.getCatalog();
+        fout<<"Nume, ID, Note\n";
+        catalog.afiseazaCatalog(fout);
+
     }
 }

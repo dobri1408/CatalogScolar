@@ -23,6 +23,7 @@ public:
     void simuleazaZiDeScoala();
     void checkAndPerformActivity(Person* person);
 
+    const Catalog &getCatalog() const;
 };
 
 

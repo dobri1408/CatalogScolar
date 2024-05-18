@@ -15,9 +15,9 @@ void Catalog::afiseazaTopulClasei() {
     }
 }
 
-void Catalog::afiseazaCatalog() {
+void Catalog::afiseazaCatalog(std::ostream& fout) {
     for (auto& student : studenti) {
-        std::cout << student << std::endl;
+        fout << student << std::endl;
     }
 }
 std::vector<Student> Catalog::returnStudents() {

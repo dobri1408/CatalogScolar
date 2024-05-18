@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <fstream>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
@@ -114,9 +115,9 @@ int main() {
 
     // Display school statistics
     cout << "Catalogul clasei 12B:" << endl;
-    catalog12B.afiseazaCatalog();
+    //catalog12B.afiseazaCatalog();
     cout << "Catalogul clasei 11A:" << endl;
-    catalog11A.afiseazaCatalog();
+    //catalog11A.afiseazaCatalog(cout);
 
     cout << "Studentii corigenti din 12B:" << endl;
     catalog12B.afiseazaCorigentii();
@@ -134,15 +135,31 @@ int main() {
     // Generate and show a bar chart of class averages in the school
     sc.simuleazaZiDeScoala();
     sc2.simuleazaZiDeScoala();
-    std::cout << "Vizualizari";
+
 
     auto claseSortate = sc.sorteazaClaseDupaMedie();
 
     BarChart clasaChart("Clasele dupa medie", 2, 1, claseSortate);
-    clasaChart.show();
+//    clasaChart.show();
     auto claseSortate2 = sc2.sorteazaClaseDupaMedie();
     BarChart clasaChart2("Clasele dupa medie", 2, 1, claseSortate2);
-    clasaChart2.show();
+//    clasaChart2.show();
+    std::cout << "Bun venit la sistemul national de educatie\n";
+    std::cout << "Alege o scoala\n";
+    std::cout<<"1. Scoala "<<sc.getNumeScoala() << "\n";
+    std::cout<<"2. Scoala "<<sc2.getNumeScoala() << "\n";
+    std::cout<<"Alege 1 sau 2\n";
+    int var;
+    std::cin>>var;
+    if(var == 1) {
+        clasaChart.show();
+        sc.exportCSV();
+    }
+    if(var == 2) {
+        clasaChart2.show();
+        sc2.exportCSV();
+    }
+
 
     return 0;
 }

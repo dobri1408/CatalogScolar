@@ -53,3 +53,7 @@ void Clasa::simuleazaZiDeScoala(){
     }
 
 }
+
+const Catalog &Clasa::getCatalog() const {
+    return catalog;
+}

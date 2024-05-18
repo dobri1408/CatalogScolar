@@ -18,7 +18,7 @@ private:
 public:
     void adaugaStudent(const Student& student);
     void afiseazaTopulClasei();
-    void afiseazaCatalog();
+    void afiseazaCatalog(std::ostream& fout);
     void afiseazaCorigentii();
     void adaugaMateriileObligatorii(std::vector<Materie*> v);
     std::vector<Person*> getPersonal();
