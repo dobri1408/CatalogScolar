@@ -39,9 +39,6 @@ void Scoala::simuleazaZiDeScoala() {
     }
 }
 
-const std::string &Scoala::getNumeScoala() const {
-    return numeScoala;
-}
 
 void Scoala::exportCSV() const {
     for (auto clasa : clase){

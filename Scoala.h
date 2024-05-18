@@ -27,7 +27,7 @@ public:
     }
     void exportCSV() const;
 
-    const std::string &getNumeScoala() const;
+
 
     static std::string getAcademicYear() {
         return currentAcademicYear;
