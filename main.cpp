@@ -3,6 +3,11 @@
 #include <string>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <string.h>
 
 #include "Scoala.h"  // Includes Clasa, which in turn should include Catalog if set up correctly
 #include "Catalog.h"  // Includes Student and Nota if set up correctly
@@ -12,6 +17,9 @@
 #include "Parinte.h"  // Only include if you directly use Parinte in main
 #include "Materie.h"  // Only include if you directly use Materie in main
 #include "Profesor.h"
+#include "SchoolAPI.h"
+
+
 using namespace std;
 
 
@@ -24,8 +32,8 @@ int main() {
 
     Materie* matematica = new Materie("Matematica",  professor);
     Materie* romana =  new Materie("Romana",  professor);
-    Materie*fizica= new Materie("Fizica",  professor);
-    Materie* chimie= new Materie("Chimie",  professor);
+    Materie*fizica= new Materie("Fizica",  professor2);
+    Materie* chimie= new Materie("Chimie",  professor2);
     Materie* istorie=new Materie("Istorie",  professor2);
     Materie* geografie=new Materie("Geografie", professor2);
 
@@ -49,18 +57,18 @@ int main() {
     // Add grades to students in class 12B
     s1.adaugaNota(Nota(matematica, 9));
     s1.adaugaNota(Nota(romana, 10));
-    s2.adaugaNota(Nota(fizica, 8));
-    s2.adaugaNota(Nota(chimie, 7));
+    s2.adaugaNota(Nota(fizica, 10));
+    s2.adaugaNota(Nota(chimie, 10));
     s3.suntBolnav(); // virtual function
     s3.adaugaNota(Nota(istorie, 10));
     s3.adaugaNota(Nota(geografie, 10));
 
     // Add grades to students in class 11A
     s4.adaugaNota(Nota(matematica, 8));
-    s4.adaugaNota(Nota(romana, 7));
+    s4.adaugaNota(Nota(romana, 10));
     s5.adaugaNota(Nota(fizica, 10));
     s5.adaugaNota(Nota(chimie, 9));
-    s6.adaugaNota(Nota(istorie, 5));
+    s6.adaugaNota(Nota(istorie, 10));
     s6.adaugaNota(Nota(geografie, 6));
 
     // Create catalogs for each class
@@ -124,10 +132,17 @@ int main() {
     cout << "Media generala a clasei 11A: " << Clasa("11A", catalog11A).calculeazaMediaGenerala() << endl;
 
     // Generate and show a bar chart of class averages in the school
-    auto claseSortate = sc.sorteazaClaseDupaMedie();
-    BarChart clasaChart("Clasele dupa medie", 2, 1, claseSortate);
-    clasaChart.show();
     sc.simuleazaZiDeScoala();
     sc2.simuleazaZiDeScoala();
+    std::cout << "Vizualizari";
+
+    auto claseSortate = sc.sorteazaClaseDupaMedie();
+
+    BarChart clasaChart("Clasele dupa medie", 2, 1, claseSortate);
+    clasaChart.show();
+    auto claseSortate2 = sc2.sorteazaClaseDupaMedie();
+    BarChart clasaChart2("Clasele dupa medie", 2, 1, claseSortate2);
+    clasaChart2.show();
+
     return 0;
 }
