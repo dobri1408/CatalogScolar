@@ -13,10 +13,9 @@ public:
     ~SchoolAPI(); // Destructor
 
     // Function to calculate the average grade of a class
-    double calculateClassAverage(const std::string& classId);
+
 
     // Function to get grades for a specific student
-    std::vector<int> getStudentGrades(const std::string& studentId);
 
 private:
     // Example of potential private data members
