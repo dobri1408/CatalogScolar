@@ -34,20 +34,27 @@ Profesor::~Profesor() {}
 std::string Profesor::getDescription() const {
     return name+ " " + email;
 }
- void Profesor::suntBolnav()  {
+ void Profesor::suntBolnav()const  {
      auto now = std::chrono::system_clock::now();
-
+     // Convert the time to std::time_t
      std::time_t current_time = std::chrono::system_clock::to_time_t(now);
-
+     // Convert std::time_t to std::tm for local time
      std::tm* current_tm = std::localtime(&current_time);
+     // Check if current_tm is null, which would indicate an error
+     if (!current_tm) {
+         std::cerr << "Local time conversion failed." << std::endl;
 
+     }
+
+     // Use ostringstream to format the date
      std::ostringstream current_date_stream;
      current_date_stream << std::put_time(current_tm, "%Y-%m-%d");
 
-
+     // Prepare a vector to store date pairs
+     std::vector<std::pair<std::string, std::string>> concedii_medicale;
+     // Push formatted date as a pair to the vector
      concedii_medicale.push_back(std::make_pair(current_date_stream.str(), current_date_stream.str()));
-     for(auto concediu:concedii_medicale) {
-         std::cout<<concediu.first<< " " << concediu.second<<"\n";}
+
      //medicale.push()
 }
 

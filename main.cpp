@@ -74,7 +74,7 @@ int main() {
     s6.adaugaNota(Nota(istorie, 10));
     s6.adaugaNota(Nota(geografie, 6));
 
-    // Create catalogs for each class
+   //  Create catalogs for each class
     Catalog catalog12B;
     Catalog catalog11A;
 
@@ -86,20 +86,27 @@ int main() {
     catalog11A.adaugaStudent(s4);
     catalog11A.adaugaStudent(s5);
     catalog11A.adaugaStudent(s6);
+
     std::vector<Materie*> materii;
     materii.push_back(matematica);
     materii.push_back(romana);
     materii.push_back(geografie);
-
+    std::vector<std::unique_ptr<Materie>> smartMaterii;
+    smartMaterii.reserve(materii.size());  // Reserve space to avoid multiple allocations
+//
+    for (Materie* materie : materii) {
+        smartMaterii.push_back(std::unique_ptr<Materie>(materie));
+    }
+//
     try {
-        catalog12B.adaugaMateriileObligatorii(materii);
+        catalog12B.adaugaMateriileObligatorii(std::move(smartMaterii));
 
     }catch (const std::exception& e)
     {
         std::cerr << "A aparut o eroare: " << e.what() << std::endl;
     }
     try {
-        catalog12B.adaugaMateriileObligatorii(materii);
+        catalog12B.adaugaMateriileObligatorii(std::move(smartMaterii));
 
     }catch (const std::exception& e)
     {

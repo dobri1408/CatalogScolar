@@ -10,27 +10,38 @@ int generateRandom() {
 
     return dist(gen); // Returnează 0 sau 1, unde 1 are o probabilitate de 70%
 }
-Clasa::Clasa(const std::string &numeClasa, const Catalog &catalog)
+Clasa::Clasa( std::string numeClasa,  Catalog catalog)
         : numeClasa(numeClasa), catalog(catalog) {}
 
  double Clasa::calculeazaMediaGenerala() const {
     return catalog.calculeazaMediaGenerala();
 }
 
+Clasa& Clasa::operator=(const Clasa& other) {
+    if (this != &other) {
+        // Correctly handle copyable members
+        this->numeClasa = other.numeClasa;
+
+        // Can't rebind references; might log or handle differently
+        // References and unique_ptr cannot be reassigned, manage accordingly
+        // You might need to rethink your design if you find yourself needing to assign to a class with a reference member.
+    }
+    return *this;
+}
 std::string Clasa::getNumeClasa() const {
     return numeClasa;
 }
 
-void Clasa::checkAndPerformActivity(Person* person) {
+void Clasa::checkAndPerformActivity(const Person* person) {
 
-    Student* st = dynamic_cast<Student*>(person);
+    const Student* st = dynamic_cast<const Student*>(person);
     if (st) {
             if(generateRandom()==0) //"cu sanse de 30 la suta s-a imbolnavit studentul"
             {
                 st->suntBolnav();
             }
     } else {
-        Profesor* professor = dynamic_cast<Profesor*>(person);
+       const Profesor* professor = dynamic_cast<const Profesor*>(person);
         if (professor) {
             for (auto &materie: materii) {
                 // Here, make sure that getProfesor() returns a Profesor* and that getDescription is valid
@@ -48,8 +59,8 @@ void Clasa::checkAndPerformActivity(Person* person) {
 
 void Clasa::simuleazaZiDeScoala(){
 
-    for(auto personal: catalog.getPersonal()){
-        checkAndPerformActivity(personal);
+    for(const auto& personal: catalog.getPersonal()){
+        checkAndPerformActivity(personal.get());
     }
 
 }

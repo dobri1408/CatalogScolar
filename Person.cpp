@@ -23,7 +23,7 @@ void Person::sendEmail(const std::string& message) const {
     std::cout << "Email to " << email << ": " << message << std::endl;
 }
 
- void Person::suntBolnav()  {}
+ void Person::suntBolnav() const {}
 // Destructor
 Person::~Person() {
     // Handle any dynamic resource management if necessary

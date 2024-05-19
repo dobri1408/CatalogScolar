@@ -17,8 +17,8 @@ private:
     int id;
     std::vector<Nota> note;  // Dynamic array of grades
     Parinte parinte;
-    std::vector<std::pair<std::string, std::string>> scutiri;
 
+    std::vector<std::pair<std::string, std::string>> scutiri;
 public:
     Student(const std::string &nume, const std::string &email, const Parinte &p, const int &id);
     Student(const std::string &nume, const std::string &email, const int &id, const std::vector<Nota> &noteArray);
@@ -31,7 +31,7 @@ public:
     bool esteCorigent() const;
     int notaMaxima() const;
     std::string getDescription() const override;  // Ensure this is declared to override
-    void suntBolnav()  override;
+    void suntBolnav()  const override;
     friend std::ostream& operator<<(std::ostream& os, const Student& s);
 };
 

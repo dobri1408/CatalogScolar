@@ -34,14 +34,14 @@ std::vector<BarChartStruct> Scoala::sorteazaClaseDupaMedie() {
 
 
 void Scoala::simuleazaZiDeScoala() {
-    for (auto clasa:clase){
+    for (auto& clasa:clase){
         clasa.simuleazaZiDeScoala();
     }
 }
 
 
 void Scoala::exportCSV() const {
-    for (auto clasa : clase){
+    for (auto& clasa : clase){
         std::string fileName = clasa.getNumeClasa()+".csv";
         std::ofstream fout(fileName);
         auto catalog = clasa.getCatalog();

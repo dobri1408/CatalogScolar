@@ -11,17 +11,29 @@
 class Clasa {
 private:
     std::string numeClasa;
-    Catalog catalog;
+    Catalog& catalog;  // Reference to Catalog
     std::vector<Materie*> materii;
 
     
 
 public:
-    Clasa(const std::string &numeClasa, const Catalog &catalog);
+    Clasa( std::string numeClasa,  Catalog catalog);
+    Clasa& operator=(const Clasa& other);
+
+    friend void swap(Clasa& a, Clasa& b) noexcept {
+        using std::swap; // Enable ADL
+        // Explicitly swap all members
+        swap(a.materii, b.materii);
+        swap(a.catalog, b.catalog);
+        swap(a.numeClasa, b.numeClasa);
+        // Add more swaps for other members
+    }
+
+
     double calculeazaMediaGenerala() const;
     std::string getNumeClasa() const;
     void simuleazaZiDeScoala();
-    void checkAndPerformActivity(Person* person);
+    void checkAndPerformActivity(const Person* person);
 
     const Catalog &getCatalog() const;
 };
