@@ -13,13 +13,19 @@ Profesor::Profesor(const std::string &name, const std::string &email)
 
 // Copy constructor
 Profesor::Profesor(const Profesor &other)
-        : Person(other), subjects(other.subjects) {}
+        : Person(other), subjects(other.subjects),concedii_medicale(other.concedii_medicale) {}
 
 // Copy assignment operator
 Profesor& Profesor::operator=(const Profesor &other) {
     if (this != &other) {
         Person::operator=(other);  // Call the base class assignment operator
         subjects = other.subjects;
+        concedii_medicale.clear();
+        for(auto c:other.concedii_medicale){
+            concedii_medicale.push_back(c);
+        }
+
+
     }
     return *this;
 }

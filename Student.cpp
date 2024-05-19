@@ -13,7 +13,7 @@ Student::Student(const std::string &nume,const std::string &email, const int &id
         :Person(nume,email), id(id), note(noteArray) {}
 
 Student::Student(const Student& other)
-        : Person(other), id(other.id), note(other.note), parinte(other.parinte) {}
+        : Person(other), id(other.id), note(other.note), parinte(other.parinte),  scutiri(other.scutiri) {}
 
 Student& Student::operator=(const Student& other) {
     if (this != &other) {
@@ -21,6 +21,8 @@ Student& Student::operator=(const Student& other) {
         id = other.id;
         note = other.note;
         parinte = other.parinte;
+        scutiri = other.scutiri;
+
     }
     return *this;
 }
