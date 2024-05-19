@@ -25,6 +25,6 @@ Materie* Nota::getMaterie() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Nota& n) {
-    os << n.materie << ", Nota: " << n.valoare;
+    os << n.materie->getMaterie() << " " << n.valoare;
     return os;
 }

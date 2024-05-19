@@ -124,9 +124,9 @@ int main() {
 
     // Display school statistics
     cout << "Catalogul clasei 12B:" << endl;
-    //catalog12B.afiseazaCatalog();
+    catalog12B.afiseazaCatalog(cout);
     cout << "Catalogul clasei 11A:" << endl;
-    //catalog11A.afiseazaCatalog(cout);
+    catalog11A.afiseazaCatalog(cout);
 
     cout << "Studentii corigenti din 12B:" << endl;
     catalog12B.afiseazaCorigentii();

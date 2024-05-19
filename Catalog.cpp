@@ -44,7 +44,7 @@ double Catalog::calculeazaMediaGenerala() const {
 
     for (auto& student : studenti) {
         sumaMediilor += student.calculeazaMedia();
-        std::cout <<"NHM"<<student.calculeazaMedia();
+
     }
     return sumaMediilor / studenti.size();
 }
@@ -65,7 +65,7 @@ Catalog& Catalog::operator=(const Catalog& other) {
         for (const auto& materie : other.materii) {
             materii.push_back(std::make_unique<Materie>(*materie));
         }
-        studenti.clear();
+
         for (const auto& student : other.studenti) {
             studenti.push_back(student);
         }
