@@ -20,7 +20,7 @@ public:
 
     virtual std::string getDescription() const = 0;  // Pure virtual function
     virtual void sendEmail(const std::string& message) const; // Virtual function for sending email
-    virtual void suntBolnav() const ;
+    virtual void suntBolnav()  ;
 };
 
 #endif //OOP_PERSON_H

@@ -31,7 +31,7 @@ public:
     bool esteCorigent() const;
     int notaMaxima() const;
     std::string getDescription() const override;  // Ensure this is declared to override
-    void suntBolnav()  const override;
+    void suntBolnav()   override;
     friend std::ostream& operator<<(std::ostream& os, const Student& s);
 };
 

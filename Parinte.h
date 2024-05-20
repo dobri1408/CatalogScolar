@@ -20,7 +20,7 @@ public:
 
     bool isDataSet();
     std::string getDescription() const override;  // Ensure this is declared to override
-     void suntBolnav()  const override;  // Ensure this is declared to override
+     void suntBolnav()   override;  // Ensure this is declared to override
 };
 
 #endif //OOP_PARINTE_H

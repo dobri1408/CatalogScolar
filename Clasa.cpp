@@ -21,10 +21,7 @@ Clasa& Clasa::operator=(const Clasa& other) {
     if (this != &other) {
         // Correctly handle copyable members
         this->numeClasa = other.numeClasa;
-
-        // Can't rebind references; might log or handle differently
-        // References and unique_ptr cannot be reassigned, manage accordingly
-        // You might need to rethink your design if you find yourself needing to assign to a class with a reference member.
+        this->catalog = other.catalog;
     }
     return *this;
 }
@@ -36,9 +33,9 @@ void Clasa::checkAndPerformActivity(const Person* person) {
 
     const Student* st = dynamic_cast<const Student*>(person);
     if (st) {
-            if(generateRandom()==0) //"cu sanse de 30 la suta s-a imbolnavit studentul"
+            if(generateRandom()==0) //"cu sanse de 30 la suta sa invete studentul"
             {
-                st->suntBolnav();
+              std::cout <<"Invat";
             }
     } else {
        const Profesor* professor = dynamic_cast<const Profesor*>(person);

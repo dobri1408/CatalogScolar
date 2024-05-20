@@ -57,6 +57,7 @@ int main() {
     Student s6("Elena", "email", parent3, 6);
 
     cout << "Nota maxima: " << s1.notaMaxima() << endl;
+    s1.suntBolnav();
     // Add grades to students in class 12B
     s1.adaugaNota(Nota(matematica, 9));
     s1.adaugaNota(Nota(romana, 10));
@@ -146,11 +147,11 @@ int main() {
     sc2.simuleazaZiDeScoala();
 
 
-    auto claseSortate = sc.sorteazaClaseDupaMedie();
+    auto claseSortate = sc.getRank();
 
     BarChart clasaChart("Clasele dupa medie", 2, 1, claseSortate);
 //    clasaChart.show();
-    auto claseSortate2 = sc2.sorteazaClaseDupaMedie();
+    auto claseSortate2 = sc2.getRank();
     BarChart clasaChart2("Clasele dupa medie", 2, 1, claseSortate2);
 //    clasaChart2.show();
     std::cout <<" Creare fisiere csv\n";

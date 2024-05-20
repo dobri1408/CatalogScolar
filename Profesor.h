@@ -27,7 +27,7 @@ public:
 
 
     std::string getDescription() const override;
-    void suntBolnav()  const override;
+    void suntBolnav()   override;
 
 
 };

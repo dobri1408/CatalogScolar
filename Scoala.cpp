@@ -17,20 +17,13 @@ void Scoala::adaugaClasa(const Clasa& clasa) {
         }
         clase.push_back(clasa);
 
+        claseSortate.push_back({clasa.getNumeClasa(), clasa.calculeazaMediaGenerala()});
+
+
+
     std::cout << "Clasa " << clasa.getNumeClasa() << " a fost adaugata la scoala " << numeScoala << "." << std::endl;
 }
 
-std::vector<BarChartStruct> Scoala::sorteazaClaseDupaMedie() {
-    std::sort(clase.begin(), clase.end(), [](const Clasa &a, const Clasa &b) {
-        return a.calculeazaMediaGenerala() > b.calculeazaMediaGenerala();
-    });
-
-    std::vector<BarChartStruct> claseSortate;
-    for (const auto& c : clase) {
-        claseSortate.push_back({c.getNumeClasa(), c.calculeazaMediaGenerala()});
-    }
-    return claseSortate;
-}
 
 
 void Scoala::simuleazaZiDeScoala() {
@@ -49,4 +42,8 @@ void Scoala::exportCSV() const {
         catalog.afiseazaCatalog(fout);
 
     }
+}
+
+const std::vector<BarChartStruct> &Scoala::getRank() const {
+    return claseSortate;
 }

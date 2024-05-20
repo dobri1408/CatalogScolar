@@ -14,7 +14,7 @@ class Scoala {
 private:
     std::string numeScoala;
     std::vector<Clasa> clase;
-
+    std::vector<BarChartStruct> claseSortate;
     int maximumClassesCapacity;
     static std::string currentAcademicYear;
 public:
@@ -27,13 +27,12 @@ public:
     }
     void exportCSV() const;
 
-
+    const std::vector<BarChartStruct> &getRank() const;
 
     static std::string getAcademicYear() {
         return currentAcademicYear;
     }
 
-    std::vector<BarChartStruct> sorteazaClaseDupaMedie();
 };
 
 #endif //OOP_SCOALA_H

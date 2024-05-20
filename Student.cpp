@@ -62,12 +62,13 @@ void Student::adaugaNota(const Nota& nota) {
     ss << std::put_time(now_tm, "%Y-%m-%d");  // Format the date as "Year-Month-Day"
     std::string today = ss.str();
     try {
-
+        std::cout<<nota.getMaterie()->getProfesor()->getDescription()<<"\n";
         if (nota.getMaterie()->getProfesor()->esteProfesorulInConcediu()) {
             throw TeachingException("Profesorul este in concediu medical, nu este posibila nota");
         }
 
         for (auto concediu: scutiri) {
+            std::cout<<"scutiri"<<"\n";
             if (isDateInRange(today, concediu.first, concediu.second))
                 throw TeachingException("Elevul are scutire, nu este posibila nota");
         }
@@ -121,7 +122,7 @@ std::ostream& operator<<(std::ostream& os, const Student& s) {
     return os;
 }
 
-void Student::suntBolnav()const   {
+void Student::suntBolnav()   {
     auto now = std::chrono::system_clock::now();
     std::time_t current_time = std::chrono::system_clock::to_time_t(now);
     std::tm* current_tm = std::localtime(&current_time);
@@ -134,7 +135,7 @@ void Student::suntBolnav()const   {
     std::ostringstream current_date_stream;
     current_date_stream << std::put_time(current_tm, "%Y-%m-%d");
 
-    std::vector<std::pair<std::string, std::string>> scutiri;
+
     scutiri.push_back(std::make_pair(current_date_stream.str(), current_date_stream.str()));
 
 }

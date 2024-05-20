@@ -20,10 +20,8 @@ Profesor& Profesor::operator=(const Profesor &other) {
     if (this != &other) {
         Person::operator=(other);  // Call the base class assignment operator
         subjects = other.subjects;
-        concedii_medicale.clear();
-        for(auto c:other.concedii_medicale){
-            concedii_medicale.push_back(c);
-        }
+
+       concedii_medicale = other.concedii_medicale;
 
 
     }
@@ -40,7 +38,7 @@ Profesor::~Profesor() {}
 std::string Profesor::getDescription() const {
     return name+ " " + email;
 }
- void Profesor::suntBolnav()const  {
+ void Profesor::suntBolnav()  {
      auto now = std::chrono::system_clock::now();
      // Convert the time to std::time_t
      std::time_t current_time = std::chrono::system_clock::to_time_t(now);
@@ -57,7 +55,7 @@ std::string Profesor::getDescription() const {
      current_date_stream << std::put_time(current_tm, "%Y-%m-%d");
 
      // Prepare a vector to store date pairs
-     std::vector<std::pair<std::string, std::string>> concedii_medicale;
+
      // Push formatted date as a pair to the vector
      concedii_medicale.push_back(std::make_pair(current_date_stream.str(), current_date_stream.str()));
 

@@ -2,8 +2,9 @@
 #include "Exceptions.h"
 
 Catalog::Catalog() {
-    // Implementare, dacă este necesară inițializarea specială
+
 }
+
 void Catalog::afiseazaTopulClasei() {
     std::sort(studenti.begin(), studenti.end(), [](const Student& s1, const Student& s2) {
         return s1.calculeazaMedia() > s2.calculeazaMedia();
@@ -49,7 +50,7 @@ double Catalog::calculeazaMediaGenerala() const {
     return sumaMediilor / studenti.size();
 }
 
-Catalog::Catalog(const Catalog& other) {
+Catalog::Catalog( const Catalog& other) {
     for (const auto& materie : other.materii) {
         materii.push_back(std::make_unique<Materie>(*materie));
     }for (const auto& pers : other.personal) {

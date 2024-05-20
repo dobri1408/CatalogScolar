@@ -18,7 +18,7 @@ private:
 public:
 
 
-    Catalog(const Catalog& other);
+    Catalog( const Catalog& other);
     Catalog();
     Catalog& operator=(const Catalog& other);
     void adaugaStudent(const Student& student);

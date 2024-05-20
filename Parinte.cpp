@@ -29,7 +29,7 @@ bool Parinte::isDataSet() {
 std::string Parinte::getDescription() const {
     return "Parinte: " + name;  // Providing concrete implementation
 }
- void Parinte::suntBolnav() const  {
+ void Parinte::suntBolnav()   {
     std::cout<<"veriric daca copilul meu este blonav";
 }
 
