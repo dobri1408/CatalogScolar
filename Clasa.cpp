@@ -10,7 +10,7 @@ int generateRandom() {
 
     return dist(gen); // Returnează 0 sau 1, unde 1 are o probabilitate de 70%
 }
-Clasa::Clasa( std::string numeClasa,  Catalog& catalog)
+Clasa::Clasa(const std::string& numeClasa,  Catalog& catalog)
         : numeClasa(numeClasa), catalog(catalog) {}
 
  double Clasa::calculeazaMediaGenerala() const {
