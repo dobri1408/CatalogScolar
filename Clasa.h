@@ -18,7 +18,7 @@ private:
 
 public:
     Clasa( std::string numeClasa,  Catalog catalog);
-    Clasa( Catalog &catalog);
+    Clasa( const Clasa &clasa);
     Clasa& operator=(const Clasa& other);
     double calculeazaMediaGenerala() const;
     std::string getNumeClasa() const;

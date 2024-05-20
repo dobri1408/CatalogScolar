@@ -17,6 +17,12 @@ Clasa::Clasa( std::string numeClasa,  Catalog catalog)
     return catalog.calculeazaMediaGenerala();
 }
 
+Clasa::Clasa(const Clasa &other)
+        : numeClasa(other.numeClasa),  // Initialize `numeClasa` directly from `other.numeClasa`
+          catalog(other.catalog)      // Initialize `catalog` directly from `other.catalog`
+{
+    // Constructor body is now empty since initialization is handled above
+}
 Clasa& Clasa::operator=(const Clasa& other) {
     if (this != &other) {
         // Correctly handle copyable members
