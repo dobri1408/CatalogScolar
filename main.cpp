@@ -107,7 +107,18 @@ int main() {
         std::cerr << "A aparut o eroare: " << e.what() << std::endl;
     }
     try {
-        catalog12B.adaugaMateriileObligatorii(std::move(smartMaterii));
+        std::vector<Materie> copyMaterii;
+        for (const auto& ptr : smartMaterii) {
+            if (ptr) { // Ensure the pointer is not null
+                copyMaterii.push_back(*ptr); // Dereference the unique_ptr and copy the Materie object
+            }
+        }std::vector<std::unique_ptr<Materie>> uniqueMaterii;
+        for (const Materie& materie : copyMaterii) {
+            // Create a new unique_ptr for each Materie, assuming Materie can be copied
+            uniqueMaterii.push_back(std::make_unique<Materie>(materie));
+        }
+
+        catalog12B.adaugaMateriileObligatorii( std::move(uniqueMaterii));
 
     }catch (const std::exception& e)
     {
