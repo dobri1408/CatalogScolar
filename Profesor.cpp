@@ -13,7 +13,7 @@ Profesor::Profesor(const std::string &name, const std::string &email)
 
 // Copy constructor
 Profesor::Profesor(const Profesor &other)
-        : Person(other), subjects(other.subjects),concedii_medicale(other.concedii_medicale) {}
+        : Person(other),concedii_medicale(other.concedii_medicale),subjects(other.subjects) {}
 
 // Copy assignment operator
 Profesor& Profesor::operator=(const Profesor &other) {
