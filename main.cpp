@@ -30,8 +30,8 @@ int main() {
     Profesor* professor =  new Profesor("Alice Johnson", "alice@example.com");
     Profesor* professor2 =  new Profesor("Alice Mark", "alice@example.com");
     professor->suntBolnav(); //virtual function
-    Materie* materie =new Materie("",professor);
-    delete materie;
+    Materie* m1 =new Materie("",professor);
+    delete m1;
 
     Materie* matematica = new Materie("Matematica",  professor);
     Materie* romana =  new Materie("Romana",  professor);
@@ -95,8 +95,8 @@ int main() {
     std::vector<std::unique_ptr<Materie>> smartMaterii;
     smartMaterii.reserve(materii.size());  // Reserve space to avoid multiple allocations
 //
-    for (Materie* materie : materii) {
-        smartMaterii.push_back(std::unique_ptr<Materie>(materie));
+    for (Materie* m : materii) {
+        smartMaterii.push_back(std::unique_ptr<Materie>(m));
     }
 //
     try {
@@ -113,9 +113,9 @@ int main() {
                 copyMaterii.push_back(*ptr); // Dereference the unique_ptr and copy the Materie object
             }
         }std::vector<std::unique_ptr<Materie>> uniqueMaterii;
-        for (const Materie& materie : copyMaterii) {
+        for (const Materie& m2 : copyMaterii) {
             // Create a new unique_ptr for each Materie, assuming Materie can be copied
-            uniqueMaterii.push_back(std::make_unique<Materie>(materie));
+            uniqueMaterii.push_back(std::make_unique<Materie>(m2));
         }
 
         catalog12B.adaugaMateriileObligatorii( std::move(uniqueMaterii));
