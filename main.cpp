@@ -39,6 +39,8 @@ int main() {
     Materie* chimie= new Materie("Chimie",  professor2);
     Materie* istorie=new Materie("Istorie",  professor2);
     Materie* geografie=new Materie("Geografie", professor2);
+    Materie* engleza = new Materie("Engleza",  professor);
+    Materie* pictura =  new Materie("Pictura",  professor);
 
 
     // Define parents
@@ -92,11 +94,19 @@ int main() {
     materii.push_back(matematica);
     materii.push_back(romana);
     materii.push_back(geografie);
+    std::vector<Materie*> materii2;
+    materii2.push_back(pictura);
+    materii2.push_back(engleza);
+
     std::vector<std::unique_ptr<Materie>> smartMaterii;
+    std::vector<std::unique_ptr<Materie>> smartMaterii2;
     smartMaterii.reserve(materii.size());  // Reserve space to avoid multiple allocations
-//
+    smartMaterii2.reserve(materii2.size());  // Reserve space to avoid multiple allocations
     for (Materie* m : materii) {
         smartMaterii.push_back(std::unique_ptr<Materie>(m));
+    }
+    for (Materie* m : materii2) {
+        smartMaterii2.push_back(std::unique_ptr<Materie>(m));
     }
 //
     try {
@@ -107,18 +117,9 @@ int main() {
         std::cerr << "A aparut o eroare: " << e.what() << std::endl;
     }
     try {
-        std::vector<Materie> copyMaterii;
-        for (const auto& ptr : smartMaterii) {
-            if (ptr) { // Ensure the pointer is not null
-                copyMaterii.push_back(*ptr); // Dereference the unique_ptr and copy the Materie object
-            }
-        }std::vector<std::unique_ptr<Materie>> uniqueMaterii;
-        for (const Materie& m2 : copyMaterii) {
-            // Create a new unique_ptr for each Materie, assuming Materie can be copied
-            uniqueMaterii.push_back(std::make_unique<Materie>(m2));
-        }
 
-        catalog12B.adaugaMateriileObligatorii( std::move(uniqueMaterii));
+
+       // catalog12B.adaugaMateriileObligatorii( std::move(smartMaterii2));
 
     }catch (const std::exception& e)
     {
