@@ -153,7 +153,10 @@ int main() {
 //    clasaChart2.show();
     std::cout <<" Creare fisiere csv\n";
     Director director = Director(*professor,sc);
-    director.verificaCalitatea();
+    if(director.verificaCalitatea()==true){
+        std::cout<<"Directorul este competent";
+    }
+    else std::cout<<"Directorul nu este competent";
 
         clasaChart.show();
         sc.exportCSV();

@@ -41,7 +41,7 @@ void Clasa::checkAndPerformActivity(const Person* person) {
     if (st) {
             if(generateRandom()==0) //"cu sanse de 30 la suta sa invete studentul"
             {
-              std::cout <<"Invat";
+              std::cout <<"Invat\n";
             }
     } else {
        const Profesor* professor = dynamic_cast<const Profesor*>(person);

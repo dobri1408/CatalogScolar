@@ -7,6 +7,9 @@
 Director::Director(const Profesor &other, const Scoala &scoala) : Profesor(other), scoala(scoala) {
 
 }
-void Director::verificaCalitatea() {
-    scoala.getRank();
+bool Director::verificaCalitatea() {
+    auto ranks = scoala.getRank();
+    if(ranks.size()>0 and ranks[0].value>5)
+        return true;
+    return false;
 }

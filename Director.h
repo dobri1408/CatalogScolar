@@ -11,7 +11,7 @@ private:
     Scoala scoala;
 public:
     Director(const Profesor &other, const Scoala &scoala);
-    void verificaCalitatea();
+    bool verificaCalitatea();
 };
 
 
