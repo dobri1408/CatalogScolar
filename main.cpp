@@ -175,8 +175,19 @@ int main() {
         clasaChart2.show();
         sc2.exportCSV();
 
+        delete professor;
+        delete professor2;
+        delete matematica;
+        delete romana;
+        delete fizica;
+        delete chimie;
+        delete istorie;
+        delete geografie;
+        delete engleza;
+        delete pictura;
 
-    delete professor;
-    delete professor2;
+
+
+
     return 0;
 }
