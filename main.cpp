@@ -91,38 +91,28 @@ int main() {
     catalog11A.adaugaStudent(s5);
     catalog11A.adaugaStudent(s6);
 
-    std::vector<Materie*> materii;
-    materii.push_back(matematica.get());
-    materii.push_back(romana.get());
-    materii.push_back(geografie.get());
-    std::vector<Materie*> materii2;
-    materii2.push_back(pictura.get());
-    materii2.push_back(engleza.get());
-
     std::vector<std::unique_ptr<Materie>> smartMaterii;
     std::vector<std::unique_ptr<Materie>> smartMaterii2;
-    smartMaterii.reserve(materii.size());  // Reserve space to avoid multiple allocations
-    smartMaterii2.reserve(materii2.size());  // Reserve space to avoid multiple allocations
-    for (Materie* m : materii) {
-        smartMaterii.push_back(std::unique_ptr<Materie>(m));
-    }
-    for (Materie* m : materii2) {
-        smartMaterii2.push_back(std::unique_ptr<Materie>(m));
-    }
-//
+
+// Add unique_ptr directly, using std::move to transfer ownership
+    smartMaterii.push_back(std::move(matematica));
+    smartMaterii.push_back(std::move(romana));
+    smartMaterii.push_back(std::move(geografie));
+
+    smartMaterii2.push_back(std::move(pictura));
+    smartMaterii2.push_back(std::move(engleza));
+
+// Usage of these vectors in your school system, for example:
     try {
         catalog12B.adaugaMateriileObligatorii(std::move(smartMaterii));
-
-    }catch (const std::exception& e)
-    {
+    } catch (const std::exception& e) {
         std::cerr << "A aparut o eroare: " << e.what() << std::endl;
     }
+
     try {
-
-
-       // catalog12B.adaugaMateriileObligatorii( std::move(smartMaterii2));
-
-    }catch (const std::exception& e)
+        catalog11A.adaugaMateriileObligatorii(std::move(smartMaterii2));
+    }
+    catch (const std::exception& e)
     {
         std::cerr << "A aparut o eroare: " << e.what() << std::endl;
     }
