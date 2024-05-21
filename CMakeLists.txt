@@ -36,6 +36,8 @@ add_executable(${PROJECT_NAME}
         Person.cpp
         Profesor.cpp
         SchoolAPI.cpp
+        Director.h
+        Director.cpp
 )
 
 # Link libraries

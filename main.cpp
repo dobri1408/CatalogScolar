@@ -11,6 +11,7 @@
 #include "Parinte.h"  // Only include if you directly use Parinte in main
 #include "Materie.h"  // Only include if you directly use Materie in main
 #include "Profesor.h"
+#include "Director.h"
 
 
 
@@ -151,6 +152,8 @@ int main() {
     BarChart clasaChart2("Clasele dupa medie", 2, 1, claseSortate2);
 //    clasaChart2.show();
     std::cout <<" Creare fisiere csv\n";
+    Director director = Director(*professor,sc);
+    director.verificaCalitatea();
 
         clasaChart.show();
         sc.exportCSV();
