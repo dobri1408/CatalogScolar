@@ -157,22 +157,6 @@ jobs:
             # This env runs valgrind
             runs_valgrind: true
 
-          - os: macos-12
-            c: clang
-            cxx: clang++
-            name: "ASan: macOS 12 Apple Clang 14"
-            cmake_flags: "-DUSE_ASAN=ON"
-            # cmake_generator:
-            # This env runs address sanitizers
-            runs_asan: true
-
-          - os: macos-12
-            c: gcc-12
-            cxx: g++-12
-            name: "macOS 12 GCC 12"
-            # cmake_flags:
-            # cmake_generator: Ninja
-
           - os: windows-2022
             c: cl
             cxx: cl
