@@ -176,6 +176,7 @@ int main() {
         sc2.exportCSV();
 
 
-
+    delete professor;
+    delete professor2;
     return 0;
 }
