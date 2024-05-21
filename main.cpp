@@ -27,20 +27,21 @@ using namespace std;
 
 int main() {
     // Define subjects
-    Profesor* professor =  new Profesor("Alice Johnson", "alice@example.com");
-    Profesor* professor2 =  new Profesor("Alice Mark", "alice@example.com");
+    auto professor =   std::make_unique<Profesor>("Alice Johnson", "alice@example.com");
+    auto professor2 =   std::make_unique<Profesor>("Alice Mark", "alice@example.com");
     professor->suntBolnav(); //virtual function
-    Materie* m1 =new Materie("",professor);
+    Materie* m1 =new Materie("",professor.get());
     delete m1;
 
-    Materie* matematica = new Materie("Matematica",  professor);
-    Materie* romana =  new Materie("Romana",  professor);
-    Materie*fizica= new Materie("Fizica",  professor2);
-    Materie* chimie= new Materie("Chimie",  professor2);
-    Materie* istorie=new Materie("Istorie",  professor2);
-    Materie* geografie=new Materie("Geografie", professor2);
-    Materie* engleza = new Materie("Engleza",  professor);
-    Materie* pictura =  new Materie("Pictura",  professor);
+    auto matematica = std::make_unique<Materie>("Matematica", professor.get());
+    auto romana = std::make_unique<Materie>("Romana", professor.get());
+    auto fizica = std::make_unique<Materie>("Fizica", professor2.get());
+    auto chimie = std::make_unique<Materie>("Chimie", professor2.get());
+    auto istorie = std::make_unique<Materie>("Istorie", professor2.get());
+    auto geografie = std::make_unique<Materie>("Geografie", professor2.get());
+    auto engleza = std::make_unique<Materie>("Engleza", professor.get());
+    auto pictura = std::make_unique<Materie>("Pictura", professor.get());
+
 
 
     // Define parents
@@ -61,21 +62,21 @@ int main() {
     cout << "Nota maxima: " << s1.notaMaxima() << endl;
     s1.suntBolnav();
     // Add grades to students in class 12B
-    s1.adaugaNota(Nota(matematica, 9));
-    s1.adaugaNota(Nota(romana, 10));
-    s2.adaugaNota(Nota(fizica, 10));
-    s2.adaugaNota(Nota(chimie, 10));
+    s1.adaugaNota(Nota(matematica.get(), 9));
+    s1.adaugaNota(Nota(romana.get(), 10));
+    s2.adaugaNota(Nota(fizica.get(), 10));
+    s2.adaugaNota(Nota(chimie.get(), 10));
     s3.suntBolnav(); // virtual function
-    s3.adaugaNota(Nota(istorie, 10));
-    s3.adaugaNota(Nota(geografie, 10));
+    s3.adaugaNota(Nota(istorie.get(), 10));
+    s3.adaugaNota(Nota(geografie.get(), 10));
 
     // Add grades to students in class 11A
-    s4.adaugaNota(Nota(matematica, 8));
-    s4.adaugaNota(Nota(romana, 10));
-    s5.adaugaNota(Nota(fizica, 10));
-    s5.adaugaNota(Nota(chimie, 9));
-    s6.adaugaNota(Nota(istorie, 10));
-    s6.adaugaNota(Nota(geografie, 6));
+    s4.adaugaNota(Nota(matematica.get(), 8));
+    s4.adaugaNota(Nota(romana.get(), 10));
+    s5.adaugaNota(Nota(fizica.get(), 10));
+    s5.adaugaNota(Nota(chimie.get(), 9));
+    s6.adaugaNota(Nota(istorie.get(), 10));
+    s6.adaugaNota(Nota(geografie.get(), 6));
 
    //  Create catalogs for each class
     Catalog catalog12B;
@@ -91,12 +92,12 @@ int main() {
     catalog11A.adaugaStudent(s6);
 
     std::vector<Materie*> materii;
-    materii.push_back(matematica);
-    materii.push_back(romana);
-    materii.push_back(geografie);
+    materii.push_back(matematica.get());
+    materii.push_back(romana.get());
+    materii.push_back(geografie.get());
     std::vector<Materie*> materii2;
-    materii2.push_back(pictura);
-    materii2.push_back(engleza);
+    materii2.push_back(pictura.get());
+    materii2.push_back(engleza.get());
 
     std::vector<std::unique_ptr<Materie>> smartMaterii;
     std::vector<std::unique_ptr<Materie>> smartMaterii2;
@@ -174,11 +175,6 @@ int main() {
 
         clasaChart2.show();
         sc2.exportCSV();
-    
-
-
-        delete professor;
-        delete professor2;
 
 
 

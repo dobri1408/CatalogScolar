@@ -2,7 +2,7 @@
 
 Nota::Nota() :materie(),valoare(0) {}
 
-Nota::Nota(Materie* &materie, const int &valoare) : materie(materie), valoare(valoare) {}
+Nota::Nota(Materie* materie, const int &valoare) : materie(materie), valoare(valoare) {}
 
 Nota::Nota(const Nota& other) : materie(other.materie), valoare(other.valoare) {}
 

@@ -14,7 +14,7 @@ private:
 
 public:
     Nota();
-    Nota(Materie* &materie, const int &valoare);
+    Nota(Materie* materie, const int &valoare);
     Nota(const Nota& other);
     Nota& operator=(const Nota& other);
     ~Nota();

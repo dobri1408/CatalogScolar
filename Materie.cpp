@@ -3,7 +3,7 @@
 
 Materie::Materie() : numeMaterie(""), profesor(new Profesor("","")) {}
 
-Materie::Materie(const std::string &numeMaterie,  Profesor* &profesor)
+Materie::Materie(const std::string &numeMaterie,  Profesor* profesor)
         : numeMaterie(numeMaterie), profesor(profesor) {
     try{
     if (numeMaterie.empty()) {

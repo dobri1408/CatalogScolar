@@ -14,7 +14,7 @@ private:
 
 public:
     Materie();
-    Materie(const std::string &numeMaterie,  Profesor* &profesor);
+    Materie(const std::string &numeMaterie,  Profesor* profesor);
     Materie(const Materie& other);
     Materie& operator=(const Materie& other);
     ~Materie();
