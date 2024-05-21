@@ -1,14 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
-#include <cmath>
-#include <iostream>
-#include <fstream>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <string.h>
+
 
 #include "Scoala.h"  // Includes Clasa, which in turn should include Catalog if set up correctly
 #include "Catalog.h"  // Includes Student and Nota if set up correctly
@@ -18,7 +11,7 @@
 #include "Parinte.h"  // Only include if you directly use Parinte in main
 #include "Materie.h"  // Only include if you directly use Materie in main
 #include "Profesor.h"
-#include "SchoolAPI.h"
+
 
 
 using namespace std;
