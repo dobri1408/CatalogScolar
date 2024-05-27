@@ -3,8 +3,8 @@
 #ifndef OOP_BARCHARTPROXY_H
 #define OOP_BARCHARTPROXY_H
 
-#include "IBarChart.h"
-#include "BarChart.h"
+#include "IBarchart.h"
+#include "Barchart.h"
 
 class BarChartProxy : public IBarChart {
 private:
