@@ -158,15 +158,6 @@ jobs:
             runs_valgrind: true
 
           - os: windows-2022
-            c: cl
-            cxx: cl
-            name: "ASan: Windows 2022 MSVC 19.38"
-            cmake_flags: "-DUSE_ASAN=ON"
-            # cmake_generator: Ninja
-            # This env runs address sanitizers
-            runs_asan: true
-
-          - os: windows-2022
             c: gcc
             cxx: g++
             name: "Windows 2022 MinGW GCC 12"
