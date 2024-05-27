@@ -10,14 +10,24 @@ template<typename T>
 Nota<T>::Nota(Materie* materie, const T &valoare) : materie(materie), valoare(valoare) {}
 template<typename T>
 Nota<T>::Nota(const Nota& other) : materie(other.materie), valoare(other.valoare) {}
-template<typename T>
-Nota<T>& Nota<T>::operator=(const Nota<T>& other) {
+
+template<>
+Nota<int>& Nota<int>::operator=(const Nota<int>& other) {
     if (this != &other) {
         materie = other.materie;
         valoare = other.valoare;
     }
     return *this;
 }
+template<>
+Nota<std::string>& Nota<std::string>::operator=(const Nota<std::string>& other) {
+    if (this != &other) {
+        materie = other.materie;
+        valoare = other.valoare;
+    }
+    return *this;
+}
+
 template<typename T>
 Nota<T>::~Nota() {}
 template<typename T>
@@ -60,5 +70,6 @@ std::ostream& operator<<(std::ostream& os, const Nota<std::string>&  n) {
 
 template class Nota<int>;
 template class Nota<std::string>;
+
 
 
