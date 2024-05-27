@@ -1,6 +1,6 @@
 // BarChartProxy.cpp
 
-#include "BarChartProxy.h"
+#include "BarchartProxy.h"
 #include <iostream>
 
 BarChartProxy::BarChartProxy(const std::string& title, int size, int count, const std::vector<BarChartStruct>& result)
