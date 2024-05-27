@@ -15,7 +15,6 @@ public:
 
     SistemNationalCatalog();
 
-    const std::vector<Scoala> &getScoli() const;
     void CreeeazaUnScenariuInitial();
 
 };

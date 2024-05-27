@@ -21,9 +21,7 @@ SistemNationalCatalog::SistemNationalCatalog(const std::vector<Scoala> &scoli) :
 
 SistemNationalCatalog::SistemNationalCatalog() {}
 
-const std::vector<Scoala> &SistemNationalCatalog::getScoli() const {
-    return scoli;
-}
+
 
 void SistemNationalCatalog::CreeeazaUnScenariuInitial(){
     auto professor =   std::make_unique<Profesor>("Alice Johnson", "alice@example.com");
