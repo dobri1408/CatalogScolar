@@ -8,11 +8,11 @@
 
 class BarChartProxy : public IBarChart {
 private:
-    BarChart* realBarChart;
     std::string title;
     int size;
     int count;
     std::vector<BarChartStruct> result;
+    BarChart* realBarChart;
 
 public:
     BarChartProxy(const std::string& title, int size, int count, const std::vector<BarChartStruct>& result);
