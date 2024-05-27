@@ -41,6 +41,13 @@ add_executable(${PROJECT_NAME}
         Director.cpp
         ElevPrimar.h
         ElevPrimar.cpp
+        SistemNationalCatalog.h
+        SistemNationalCatalog.cpp
+        CatalogFactory.h
+        CatalogFactory.cpp
+        IBarchart.h
+        BarchartProxy.h
+        BarchartProxy.cpp
 )
 
 # Link libraries

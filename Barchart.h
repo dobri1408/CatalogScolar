@@ -8,12 +8,10 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "IBarchart.h"
 
 // Forward declare a struct that will be used in the BarChart class.
-struct BarChartStruct {
-    std::string name;
-    double value;
-};
+
 
 class BarChart {
 private:
