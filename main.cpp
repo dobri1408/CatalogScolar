@@ -35,6 +35,8 @@ int main() {
     auto geografie = std::make_unique<Materie>("Geografie", professor2.get());
     auto engleza = std::make_unique<Materie>("Engleza", professor.get());
     auto pictura = std::make_unique<Materie>("Pictura", professor.get());
+    auto tehnologie = std::make_unique<Materie>("Tehnologie", professor.get());
+
 
 
 
@@ -65,7 +67,7 @@ int main() {
     s3.adaugaNota(Nota(istorie.get(), 10));
     s3.adaugaNota(Nota(geografie.get(), 10));
 
-    s7.adaugaNota(Nota(geografie.get(), std::string("FB")));
+    s7.adaugaNota(Nota(tehnologie.get(), std::string("FB")));
 
     // Add grades to students in class 11A
     s4.adaugaNota(Nota(matematica.get(), 8));
@@ -100,7 +102,8 @@ int main() {
 
     smartMaterii2.push_back(std::move(pictura));
     smartMaterii2.push_back(std::move(engleza));
-    smartMaterii3.push_back(std::move(geografie));
+
+    smartMaterii3.push_back(std::move(tehnologie));
 
 // Usage of these vectors in your school system, for example:
     try {
