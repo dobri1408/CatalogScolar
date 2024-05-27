@@ -26,7 +26,7 @@ public:
     Catalog& operator=(const Catalog& other);
     void adaugaStudent(const Student& student);
     void afiseazaTopulClasei();
-    const void afiseazaCatalog(std::ostream& fout) const;
+    void afiseazaCatalog(std::ostream& fout) const;
     void afiseazaCorigentii();
     void adaugaMateriileObligatorii(std::vector<std::unique_ptr<Materie>>&& v);
     std::vector<std::shared_ptr<const Person>> getPersonal() const;  // Return shared pointers

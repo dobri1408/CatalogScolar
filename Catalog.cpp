@@ -16,7 +16,7 @@ void Catalog<Student>::afiseazaTopulClasei() {
     }
 }
 template<typename Student>
-const void Catalog<Student>::afiseazaCatalog(std::ostream& fout) const {
+ void Catalog<Student>::afiseazaCatalog(std::ostream& fout) const {
     for (auto& student : studenti) {
         fout << student << std::endl;
     }

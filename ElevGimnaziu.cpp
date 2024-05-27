@@ -115,7 +115,7 @@ std::ostream& operator<<(std::ostream& os, const ElevGimnaziu& s) {
     os << s.getDescription();
     if (!s.note.empty()) {
         for (const auto& n : s.note) {
-           // os << n << " ";
+            os << n << " ";
         }
     }
     os<<"\n";
