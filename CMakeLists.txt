@@ -29,7 +29,8 @@ add_executable(${PROJECT_NAME}
         Parinte.cpp
         Materie.cpp
         Nota.cpp
-        Student.cpp
+        ElevGimnaziu.cpp
+        ElevGimnaziu.h
         Catalog.cpp
         Clasa.cpp
         Scoala.cpp
@@ -38,6 +39,8 @@ add_executable(${PROJECT_NAME}
         SchoolAPI.cpp
         Director.h
         Director.cpp
+        ElevPrimar.h
+        ElevPrimar.cpp
 )
 
 # Link libraries

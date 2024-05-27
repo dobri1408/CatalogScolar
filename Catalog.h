@@ -7,8 +7,11 @@
 #include <algorithm>
 #include <iostream>
 #include <memory>  // Include for smart pointers
-#include "Student.h"  // Include the Student class header
+#include "ElevGimnaziu.h"  // Include the Student class header
+#include "ElevPrimar.h"  // Include the Student class header
 
+
+template<typename Student>
 class Catalog {
 private:
     std::vector<Student> studenti;
@@ -23,7 +26,7 @@ public:
     Catalog& operator=(const Catalog& other);
     void adaugaStudent(const Student& student);
     void afiseazaTopulClasei();
-    void afiseazaCatalog(std::ostream& fout);
+    const void afiseazaCatalog(std::ostream& fout) const;
     void afiseazaCorigentii();
     void adaugaMateriileObligatorii(std::vector<std::unique_ptr<Materie>>&& v);
     std::vector<std::shared_ptr<const Person>> getPersonal() const;  // Return shared pointers

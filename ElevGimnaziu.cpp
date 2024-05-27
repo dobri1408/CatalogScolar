@@ -1,4 +1,4 @@
-#include "Student.h"
+#include "ElevGimnaziu.h"
 #include <iostream> // For std::cout and std::endl
 #include "Exceptions.h"
 #include <iomanip>
@@ -6,16 +6,16 @@
 #include <sstream>
 
 
-Student::Student(const std::string &nume,const std::string &email, const Parinte &p, const int &id)
+ElevGimnaziu::ElevGimnaziu(const std::string &nume,const std::string &email, const Parinte &p, const int &id)
         : Person(nume,email), id(id),parinte(p) {}
 
-Student::Student(const std::string &nume,const std::string &email, const int &id, const std::vector<Nota> &noteArray)
+ElevGimnaziu::ElevGimnaziu(const std::string &nume,const std::string &email, const int &id, const std::vector<Nota<int>> &noteArray)
         :Person(nume,email), id(id), note(noteArray) {}
 
-Student::Student(const Student& other)
+ElevGimnaziu::ElevGimnaziu(const ElevGimnaziu& other)
         : Person(other), id(other.id), note(other.note), parinte(other.parinte),  scutiri(other.scutiri) {}
 
-Student& Student::operator=(const Student& other) {
+ElevGimnaziu& ElevGimnaziu::operator=(const ElevGimnaziu& other) {
     if (this != &other) {
         Person::operator=(other);
         id = other.id;
@@ -50,7 +50,7 @@ static bool isDateInRange(const std::string& currentDateStr, const std::string& 
 }
 
 
-void Student::adaugaNota(const Nota& nota) {
+void ElevGimnaziu::adaugaNota(const Nota<int>& nota) {
     auto now = std::chrono::system_clock::now();
     // Convert it to a time_t object
     std::time_t now_t = std::chrono::system_clock::to_time_t(now);
@@ -64,19 +64,19 @@ void Student::adaugaNota(const Nota& nota) {
     try {
         std::cout<<nota.getMaterie()->getProfesor()->getDescription()<<"\n";
         if (nota.getMaterie()->getProfesor()->esteProfesorulInConcediu()) {
-            throw TeachingException("Profesorul este in concediu medical, nu este posibila nota");
+            throw TeachingException("Profesorul este in concediu medical, nu este posibila Nota<int>");
         }
 
         for (auto concediu: scutiri) {
             std::cout<<"scutiri"<<"\n";
             if (isDateInRange(today, concediu.first, concediu.second))
-                throw TeachingException("Elevul are scutire, nu este posibila nota");
+                throw TeachingException("Elevul are scutire, nu este posibila Nota<int>");
         }
         if (parinte.isDataSet()) {
-            parinte.sendEmail(getDescription() + " a primit o nota: " + std::to_string(nota.getValoare()) + " la " +
+            parinte.sendEmail(getDescription() + " a primit o Nota<int>: " + std::to_string(nota.getValoare()) + " la " +
                               nota.getMaterie()->getMaterie());
         }
-        else   throw TeachingException("Elevul are parinte setat, nu este posibila nota");
+        else   throw TeachingException("Elevul are parinte setat, nu este posibila Nota<int>");
         note.push_back(nota);
     }catch (const std::exception& e)
     {
@@ -84,11 +84,11 @@ void Student::adaugaNota(const Nota& nota) {
     }
 }
 
-std::string Student::getDescription() const {
+std::string ElevGimnaziu::getDescription() const {
     return name + ", " + std::to_string(id)+","; // Properly implemented as required by the abstract method in Person
 }
 
-double Student::calculeazaMedia() const {
+double ElevGimnaziu::calculeazaMedia() const {
     if (note.empty()) return 0.0;
     double suma = 0.0;
     for (const auto& n : note) {
@@ -97,11 +97,11 @@ double Student::calculeazaMedia() const {
     return suma / note.size();
 }
 
-bool Student::esteCorigent() const {
+bool ElevGimnaziu::esteCorigent() const {
     return calculeazaMedia() < 5.0;
 }
 
-int Student::notaMaxima() const {
+int ElevGimnaziu:: notaMaxima() const {
     int max = 0;
     for (const auto& n : note) {
         if (n.getValoare() > max) {
@@ -111,18 +111,18 @@ int Student::notaMaxima() const {
     return max;
 }
 
-std::ostream& operator<<(std::ostream& os, const Student& s) {
+std::ostream& operator<<(std::ostream& os, const ElevGimnaziu& s) {
     os << s.getDescription();
     if (!s.note.empty()) {
         for (const auto& n : s.note) {
-            os << n << " ";
+           // os << n << " ";
         }
     }
     os<<"\n";
     return os;
 }
 
-void Student::suntBolnav()   {
+void ElevGimnaziu::suntBolnav()   {
     auto now = std::chrono::system_clock::now();
     std::time_t current_time = std::chrono::system_clock::to_time_t(now);
     std::tm* current_tm = std::localtime(&current_time);

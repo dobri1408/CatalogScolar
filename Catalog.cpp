@@ -1,11 +1,12 @@
 #include "Catalog.h"
 #include "Exceptions.h"
 
-Catalog::Catalog() {
+template<typename Student>
+Catalog<Student>::Catalog() {
 
 }
-
-void Catalog::afiseazaTopulClasei() {
+template<typename Student>
+void Catalog<Student>::afiseazaTopulClasei() {
     std::sort(studenti.begin(), studenti.end(), [](const Student& s1, const Student& s2) {
         return s1.calculeazaMedia() > s2.calculeazaMedia();
     });
@@ -14,22 +15,23 @@ void Catalog::afiseazaTopulClasei() {
         std::cout << student.getDescription() << " - Media: " << student.calculeazaMedia() << std::endl;
     }
 }
-
-void Catalog::afiseazaCatalog(std::ostream& fout) {
+template<typename Student>
+const void Catalog<Student>::afiseazaCatalog(std::ostream& fout) const {
     for (auto& student : studenti) {
         fout << student << std::endl;
     }
 }
-std::vector<Student> Catalog::returnStudents() const{
+template<typename Student>
+std::vector<Student> Catalog<Student>::returnStudents() const{
     return studenti;
 }
-
-std::vector<std::shared_ptr<const Person>> Catalog::getPersonal() const {
+template<typename Student>
+std::vector<std::shared_ptr<const Person>> Catalog<Student>::getPersonal() const {
     return personal;  // Assuming 'personal' is defined as std::vector<std::shared_ptr<const Person>>
 }
 
-
-void Catalog::afiseazaCorigentii() {
+template<typename Student>
+void Catalog<Student>::afiseazaCorigentii() {
     std::cout << "Studentii corigenti sunt:" << std::endl;
     for (const auto& student : studenti) {
         if (student.esteCorigent()) {
@@ -37,20 +39,23 @@ void Catalog::afiseazaCorigentii() {
         }
     }
 }
-
-double Catalog::calculeazaMediaGenerala() const {
+template<typename Student>
+double Catalog<Student>::calculeazaMediaGenerala() const {
 
     if (studenti.empty()) return 0.0;
+    if (std::is_same<Student, ElevPrimar>::value)
+            return 0.0;
     double sumaMediilor = 0.0;
 
     for (auto& student : studenti) {
+
         sumaMediilor += student.calculeazaMedia();
 
     }
     return sumaMediilor / studenti.size();
 }
-
-Catalog::Catalog( const Catalog& other) {
+template<typename Student>
+Catalog<Student>::Catalog( const Catalog<Student>& other) {
     for (const auto& materie : other.materii) {
         materii.push_back(std::make_unique<Materie>(*materie));
     }for (const auto& pers : other.personal) {
@@ -60,7 +65,8 @@ Catalog::Catalog( const Catalog& other) {
         studenti.push_back(student);
     }
 }
-Catalog& Catalog::operator=(const Catalog& other) {
+template<typename Student>
+Catalog<Student>& Catalog<Student>::operator=(const Catalog<Student>& other) {
     if (this != &other) {
         materii.clear();
         for (const auto& materie : other.materii) {
@@ -77,15 +83,15 @@ Catalog& Catalog::operator=(const Catalog& other) {
     }
     return *this;
 }
-
-void Catalog::adaugaStudent(const Student& student) {
+template<typename Student>
+void Catalog<Student>::adaugaStudent(const Student& student) {
     studenti.push_back(Student(student));
 
     // Create a shared_ptr for the student to be added to the personal list
     personal.push_back(std::make_shared<Student>(student));
 }
-
-void Catalog::adaugaMateriileObligatorii(std::vector<std::unique_ptr<Materie>>&& v) {
+template<typename Student>
+void Catalog<Student>::adaugaMateriileObligatorii(std::vector<std::unique_ptr<Materie>>&& v) {
     if (v.size() > 16) {
         throw SchoolAdminException("Prea multe materii");
     }
@@ -111,3 +117,5 @@ void Catalog::adaugaMateriileObligatorii(std::vector<std::unique_ptr<Materie>>&&
     }
 }
 
+template class Catalog<ElevGimnaziu>;
+template class Catalog<ElevPrimar>;

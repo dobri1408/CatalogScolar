@@ -7,17 +7,17 @@
 #pragma once
 #include <string>
 #include "Catalog.h"  // Include the Catalog header because Clasa uses the Catalog class
-
+template<typename Student>
 class Clasa {
 private:
     std::string numeClasa;
-    Catalog& catalog;  // Reference to Catalog
+    Catalog<Student>& catalog;  // Reference to Catalog
     std::vector<Materie*> materii;
 
     
 
 public:
-    Clasa( const std::string &numeClasa,  Catalog& catalog);
+    Clasa( const std::string &numeClasa,   Catalog<Student>& catalog);
     Clasa( const Clasa &clasa);
     Clasa& operator=(const Clasa& other);
     double calculeazaMediaGenerala() const;
@@ -25,7 +25,7 @@ public:
     void simuleazaZiDeScoala();
     void checkAndPerformActivity(const Person* person);
 
-    const Catalog &getCatalog() const;
+    const  Catalog<Student> &getCatalog() const;
 };
 
 

@@ -7,22 +7,25 @@
 #pragma once
 #include "Materie.h"  // Include Materie as Nota uses it
 
+
+template <typename T>
 class Nota {
 private:
     Materie* materie;
-    int valoare;
+    T valoare;
 
 public:
     Nota();
-    Nota(Materie* materie, const int &valoare);
+    Nota(Materie* materie, const T &valoare);
     Nota(const Nota& other);
-    Nota& operator=(const Nota& other);
+    Nota& operator=(const Nota<T>& other);
     ~Nota();
 
-    int getValoare() const;
+    T getValoare() const;
     Materie* getMaterie() const;
 
-    friend std::ostream& operator<<(std::ostream& os, const Nota& n);
+    friend std::ostream& operator<<(std::ostream& os, const Nota<int>& n);
+    friend std::ostream& operator<<(std::ostream& os, const Nota<std::string>& n);
 };
 
 #endif //OOP_NOTA_H

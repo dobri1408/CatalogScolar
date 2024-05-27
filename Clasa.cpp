@@ -10,20 +10,23 @@ int generateRandom() {
 
     return dist(gen); // Returnează 0 sau 1, unde 1 are o probabilitate de 70%
 }
-Clasa::Clasa(const std::string& numeClasa,  Catalog& catalog)
+template<typename Student>
+Clasa<Student>::Clasa(const std::string& numeClasa,  Catalog<Student>& catalog)
         : numeClasa(numeClasa), catalog(catalog) {}
 
- double Clasa::calculeazaMediaGenerala() const {
+template<typename Student>
+ double Clasa<Student>::calculeazaMediaGenerala() const {
     return catalog.calculeazaMediaGenerala();
 }
-
-Clasa::Clasa(const Clasa &other)
+template<typename Student>
+Clasa<Student>::Clasa(const Clasa<Student> &other)
         : numeClasa(other.numeClasa),  // Initialize `numeClasa` directly from `other.numeClasa`
           catalog(other.catalog)      // Initialize `catalog` directly from `other.catalog`
 {
     // Constructor body is now empty since initialization is handled above
 }
-Clasa& Clasa::operator=(const Clasa& other) {
+template<typename Student>
+Clasa<Student>& Clasa<Student>::operator=(const Clasa<Student>& other) {
     if (this != &other) {
         // Correctly handle copyable members
         this->numeClasa = other.numeClasa;
@@ -31,11 +34,12 @@ Clasa& Clasa::operator=(const Clasa& other) {
     }
     return *this;
 }
-std::string Clasa::getNumeClasa() const {
+template<typename Student>
+std::string Clasa<Student>::getNumeClasa() const {
     return numeClasa;
 }
-
-void Clasa::checkAndPerformActivity(const Person* person) {
+template<typename Student>
+void Clasa<Student>::checkAndPerformActivity(const Person* person) {
 
     const Student* st = dynamic_cast<const Student*>(person);
     if (st) {
@@ -44,30 +48,39 @@ void Clasa::checkAndPerformActivity(const Person* person) {
               std::cout <<"Invat\n";
             }
     } else {
-       const Profesor* professor = dynamic_cast<const Profesor*>(person);
+        const Profesor* professor = dynamic_cast<const Profesor*>(person);
         if (professor) {
             for (auto &materie: materii) {
-                // Here, make sure that getProfesor() returns a Profesor* and that getDescription is valid
                 if (professor->getDescription() == materie->getProfesor()->getDescription()) {
                     for (auto &student : catalog.returnStudents()) {
-                        // Make sure you properly access the dereferenced materie and handle Nota correctly.
-                        student.adaugaNota(Nota( materie,10));
+                        if constexpr (std::is_same_v<Student, ElevGimnaziu>) {
+                            student.adaugaNota(Nota<int>(materie, 10));
+                        } else if constexpr (std::is_same_v<Student, ElevPrimar>) {
+                            student.adaugaNota(Nota<std::string>(materie, "FB"));
+                        }
                     }
                 }
             }
         }
     }
+
 }
 
-
-void Clasa::simuleazaZiDeScoala(){
+template<typename Student>
+void Clasa<Student>::simuleazaZiDeScoala(){
 
     for(const auto& personal: catalog.getPersonal()){
         checkAndPerformActivity(personal.get());
     }
 
 }
-
-const Catalog &Clasa::getCatalog() const {
+template<typename Student>
+const Catalog<Student> &Clasa<Student>::getCatalog() const {
     return catalog;
 }
+template class Catalog<ElevGimnaziu>;
+template class Catalog<ElevPrimar>;
+template class Clasa<ElevPrimar>;
+template class Clasa<ElevGimnaziu>;
+template class Nota<int>;
+template class Nota<std::string>;

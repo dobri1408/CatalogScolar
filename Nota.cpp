@@ -1,30 +1,64 @@
 #include "Nota.h"
+#include <type_traits>
+#include <iostream>
+#include <string>
 
-Nota::Nota() :materie(),valoare(0) {}
+template<typename T>
+Nota<T>::Nota() :materie(),valoare() {}
 
-Nota::Nota(Materie* materie, const int &valoare) : materie(materie), valoare(valoare) {}
-
-Nota::Nota(const Nota& other) : materie(other.materie), valoare(other.valoare) {}
-
-Nota& Nota::operator=(const Nota& other) {
+template<typename T>
+Nota<T>::Nota(Materie* materie, const T &valoare) : materie(materie), valoare(valoare) {}
+template<typename T>
+Nota<T>::Nota(const Nota& other) : materie(other.materie), valoare(other.valoare) {}
+template<typename T>
+Nota<T>& Nota<T>::operator=(const Nota<T>& other) {
     if (this != &other) {
         materie = other.materie;
         valoare = other.valoare;
     }
     return *this;
 }
-
-Nota::~Nota() {}
-
-int Nota::getValoare() const {
+template<typename T>
+Nota<T>::~Nota() {}
+template<typename T>
+T Nota<T>::getValoare() const {
     return valoare;
 }
-
-Materie* Nota::getMaterie() const {
+template<typename T>
+Materie* Nota<T>::getMaterie() const {
     return materie;
 }
 
-std::ostream& operator<<(std::ostream& os, const Nota& n) {
-    os << n.materie->getMaterie() << " " << n.valoare;
+
+std::ostream& operator<<(std::ostream& os, const Nota<int>& n) {
+    if (n.getMaterie() == nullptr) {
+        os << "Unknown Materie ";
+    } else {
+        os << n.getMaterie() << " ";
+    }
+    os << n.getValoare();
     return os;
 }
+
+
+std::ostream& operator<<(std::ostream& os, const Nota<std::string>&  n) {
+    if (n.getMaterie() == nullptr) {
+        os << "Unknown Materie ";
+    } else {
+        os << n.getMaterie() << " ";
+    }
+    for(auto s:n.getValoare())
+        os << s;
+
+    return os;
+}
+
+
+
+
+
+
+template class Nota<int>;
+template class Nota<std::string>;
+
+
